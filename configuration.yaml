@@ -31,6 +31,11 @@ evohome:
   password: !secret evohome_password
   scan_interval: 180
 
+asuswrt:
+  host: 192.168.0.1
+  username: !secret asuswrt_username
+  password: !secret asuswrt_password
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
