@@ -1,0 +1,17 @@
+- name: Home
+  latitude: !secret zone_home_lat
+  longitude: !secret zone_home_long
+  radius: 50
+  icon: mdi:home
+
+- name: Amplience
+  latitude: !secret zone_amplience_lat
+  longitude: !secret zone_amplience_long
+  radius: 100
+  icon: mdi:worker
+
+- name: North Tees NHS
+  latitude: !secret zone_northtees_nhs_lat
+  longitude: !secret zone_northtees_nhs_long
+  radius: 250
+  icon: mdi:hospital-building

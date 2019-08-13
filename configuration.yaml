@@ -31,11 +31,20 @@ evohome:
   password: !secret evohome_password
   scan_interval: 180
 
-asuswrt:
-  host: 192.168.0.1
-  username: !secret asuswrt_username
-  password: !secret asuswrt_password
+discovery:
+  ignore:
+    - samsung_tv
+  enable:
+
+media_player:
+  - platform: plex
+
+remote:
+  - platform: harmony
+    name: Living room
+    activity: Freeview
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+zone: !include zones.yaml
