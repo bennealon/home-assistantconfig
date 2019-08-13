@@ -1,0 +1,11 @@
+- name: Ben
+  id: bennealon
+  user_id: e0c4869a573546a5af8f7d7806694475
+  device_trackers:
+    - device_tracker.bens_iphone
+
+- name: Cathy
+  id: cathynealon
+  user_id: 253fab4874c3419eaf26527c5fd1650c
+  device_trackers:
+    - device_tracker.cathys_iphone

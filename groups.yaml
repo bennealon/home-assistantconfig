@@ -1,0 +1,5 @@
+household:
+  name: Household
+  entities:
+    - person.ben_nealon
+    - person.cathy_nealon
