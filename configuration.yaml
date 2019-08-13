@@ -38,6 +38,8 @@ discovery:
 
 media_player:
   - platform: plex
+    remove_unavailable_clients: true
+    client_remove_interval: 300
 
 remote:
   - platform: harmony
