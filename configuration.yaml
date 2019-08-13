@@ -11,14 +11,6 @@ duckdns:
   domain: !secret dns_domain
   access_token: !secret dns_access_token
 
-# Sensor for ssl-cert check to see how many days left.
-sensor:
-  - platform: command_line
-    name: SSL cert expiry
-    unit_of_measurement: days
-    scan_interval: 10800
-    command: !secret sensor_ssl_expiry_command
-
 shell_command:
   renew_ssl: ~/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
 
@@ -31,10 +23,15 @@ evohome:
   password: !secret evohome_password
   scan_interval: 180
 
+asuswrt:
+  # Should probably make this use SSH instead.
+  host: !secret asuswrt_host
+  username: !secret asuswrt_username
+  password: !secret asuswrt_password
+
 discovery:
   ignore:
     - samsung_tv
-    - denonavr
   enable:
 
 media_player:
@@ -49,6 +46,8 @@ remote:
 
 group: !include groups.yaml
 person: !include people.yaml
+device_tracker: !include device_tracker.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
+sensor: !include sensors.yaml
