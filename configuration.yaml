@@ -47,7 +47,7 @@ remote:
 group: !include groups.yaml
 person: !include people.yaml
 device_tracker: !include device_tracker.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 zone: !include zones.yaml
 sensor: !include sensors.yaml
