@@ -1,0 +1,14 @@
+- alias: "Hot water too low"
+  trigger:
+    platform: numeric_state
+    entity_id: water_heater.dhw_controller
+    value_template: "{{ state.attributes.current_temperature }}"
+    below: 30
+  condition:
+    condition: state
+    entity_id: water_heater.dhw_controller
+    state: 'off'
+  action:
+    service: notify.notify
+    data:
+      message: 'Hot water temperature too low!'

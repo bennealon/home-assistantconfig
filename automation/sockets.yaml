@@ -1,0 +1,15 @@
+- alias: "Tumble dryer finished"
+  trigger:
+    platform: numeric_state
+    entity_id: switch.tumble_dryer
+    value_template: "{{ state.attributes.current_a }}"
+    below: 0.5
+    for: "00:01:00"
+  condition:
+    condition: state
+    entity_id: switch.tumble_dryer
+    state: 'on'
+  action:
+    service: notify.notify
+    data:
+      message: 'Tumble dryer finished!'

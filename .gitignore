@@ -8,6 +8,7 @@
 !*.md
 !gitupdate.sh
 !.travis.yml
+!automation
 
 # Ignore folders.
 .storage
