@@ -1,0 +1,51 @@
+- alias: "Cathy leaving work"
+  trigger:
+    platform: zone
+    entity_id: person.cathy_nealon
+    zone: zone.north_tees_nhs
+    event: leave
+  condition:
+    condition: state
+    entity_id: sensor.cathys_iphone_battery_state
+    state: 'Charging'
+  action:
+    service: notify.ios_bens_iphone
+    data:
+      message: 'Cathys leaving work'
+
+- alias: "Ben leaving work"
+  trigger:
+    platform: zone
+    entity_id: person.ben_nealon
+    zone: zone.amplience
+    event: leave
+  condition:
+    condition: state
+    entity_id: sensor.ben_s_iphone_battery_state
+    state: 'Charging'
+  action:
+    service: notify.ios_cathys_iphone
+    data:
+      message: 'Bens leaving work'
+
+- alias: "Cathy home"
+  trigger:
+    platform: zone
+    entity_id: person.cathy_nealon
+    zone: zone.home
+    event: enter
+  action:
+    service: notify.ios_bens_iphone
+    data:
+      message: 'Cathys Home'
+
+- alias: "Ben home"
+  trigger:
+    platform: zone
+    entity_id: person.ben_nealon
+    zone: zone.home
+    event: enter
+  action:
+    service: notify.ios_cathys_iphone
+    data:
+      message: 'Bens home'
