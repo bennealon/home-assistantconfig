@@ -1,0 +1,5 @@
+  - name: household
+    platform: group
+    services:
+      - service: ios_bens_iphone
+      - service: ios_cathys_iphone

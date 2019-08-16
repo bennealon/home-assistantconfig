@@ -4,3 +4,28 @@
   unit_of_measurement: days
   scan_interval: 10800
   command: !secret sensor_ssl_expiry_command
+
+# Commute time.
+- platform: waze_travel_time
+  name: "Home to Amplience"
+  origin: zone.home
+  destination: zone.amplience
+  region: "EU"
+
+- platform: waze_travel_time
+  name: "Home to North Tees NHS"
+  origin: zone.home
+  destination: zone.north_tees_nhs
+  region: "EU"
+
+- platform: waze_travel_time
+  name: "Cathy time to Home"
+  origin: person.cathy_nealon
+  destination: zone.home
+  region: "EU"
+
+- platform: waze_travel_time
+  name: "Ben time to Home"
+  origin: person.ben_nealon
+  destination: zone.home
+  region: "EU"

@@ -15,3 +15,9 @@
   longitude: !secret zone_northtees_nhs_long
   radius: 250
   icon: mdi:hospital-building
+
+- name: Redcar NHS
+  latitude: !secret zone_redcar_nhs_lat
+  longitude: !secret zone_redcar_nhs_long
+  radius: 150
+  icon: mdi:hospital-building

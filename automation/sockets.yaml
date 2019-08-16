@@ -10,6 +10,7 @@
     entity_id: switch.tumble_dryer
     state: 'on'
   action:
-    service: notify.notify
+    service: notify.household
     data:
-      message: 'Tumble dryer finished!'
+      title: "Tumble Dryer"
+      message: "I'm finished!"

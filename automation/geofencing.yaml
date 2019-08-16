@@ -1,17 +1,25 @@
 - alias: "Cathy leaving work"
   trigger:
-    platform: zone
-    entity_id: person.cathy_nealon
-    zone: zone.north_tees_nhs
-    event: leave
+    - platform: zone
+      entity_id: person.cathy_nealon
+      zone: zone.north_tees_nhs
+      event: leave
+    - platform: zone
+      entity_id: person.cathy_nealon
+      zone: zone.redcar_nhs
+      event: leave
   condition:
     condition: state
     entity_id: sensor.cathys_iphone_battery_state
-    state: 'Charging'
+    state: "Charging"
   action:
     service: notify.ios_bens_iphone
     data:
-      message: 'Cathys leaving work'
+      title: "Work"
+      message: "Cathy's leaving"
+      data:
+        push:
+          thread-id: "work-notification-group"
 
 - alias: "Ben leaving work"
   trigger:
@@ -22,11 +30,15 @@
   condition:
     condition: state
     entity_id: sensor.ben_s_iphone_battery_state
-    state: 'Charging'
+    state: "Charging"
   action:
     service: notify.ios_cathys_iphone
     data:
-      message: 'Bens leaving work'
+      title: "Work"
+      message: "Ben's leaving"
+      data:
+        push:
+          thread-id: "work-notification-group"
 
 - alias: "Cathy home"
   trigger:
@@ -37,7 +49,11 @@
   action:
     service: notify.ios_bens_iphone
     data:
-      message: 'Cathys Home'
+      title: "Home"
+      message: "Cathy arrived"
+      data:
+        push:
+          thread-id: "home-notification-group"
 
 - alias: "Ben home"
   trigger:
@@ -48,4 +64,36 @@
   action:
     service: notify.ios_cathys_iphone
     data:
-      message: 'Bens home'
+      title: "Home"
+      message: "Ben arrived"
+      data:
+        push:
+          thread-id: "home-notification-group"
+
+- alias: "Last person leaves home"
+  trigger:
+    platform: state
+    entity_id: group.household
+    from: "home"
+  action:
+    service: notify.ios_bens_iphone
+    data:
+      title: "Home"
+      message: "Everyone's left"
+      data:
+        push:
+          thread-id: "home-notification-group"
+
+- alias: "First person arrived home"
+  trigger:
+    platform: state
+    entity_id: group.household
+    to: "home"
+  action:
+    service: notify.ios_bens_iphone
+    data:
+      title: "Home"
+      message: "First person arrived"
+      data:
+        push:
+          thread-id: "home-notification-group"

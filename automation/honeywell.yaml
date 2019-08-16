@@ -9,6 +9,7 @@
     entity_id: water_heater.dhw_controller
     state: 'off'
   action:
-    service: notify.notify
+    service: notify.household
     data:
-      message: 'Hot water temperature too low!'
+      title: "Hot Water"
+      message: "Temperature too low!"

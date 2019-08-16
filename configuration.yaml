@@ -52,3 +52,4 @@ script: !include scripts.yaml
 zone: !include zones.yaml
 sensor: !include sensors.yaml
 climate: !include climate.yaml
+notify: !include notify.yaml
