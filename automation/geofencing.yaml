@@ -13,13 +13,11 @@
     entity_id: sensor.cathys_iphone_battery_state
     state: "Charging"
   action:
-    service: notify.ios_bens_iphone
+    service: script.notify_person
     data:
+      device: "ios_bens_iphone"
       title: "Work"
       message: "Cathy's leaving"
-      data:
-        push:
-          thread-id: "work-notification-group"
 
 - alias: "Ben leaving work"
   trigger:
@@ -32,13 +30,11 @@
     entity_id: sensor.ben_s_iphone_battery_state
     state: "Charging"
   action:
-    service: notify.ios_cathys_iphone
+    service: script.notify_person
     data:
+      device: "ios_cathys_iphone"
       title: "Work"
       message: "Ben's leaving"
-      data:
-        push:
-          thread-id: "work-notification-group"
 
 - alias: "Cathy home"
   trigger:
@@ -47,13 +43,11 @@
     zone: zone.home
     event: enter
   action:
-    service: notify.ios_bens_iphone
+    service: script.notify_person
     data:
+      device: "ios_bens_iphone"
       title: "Home"
       message: "Cathy arrived"
-      data:
-        push:
-          thread-id: "home-notification-group"
 
 - alias: "Ben home"
   trigger:
@@ -62,13 +56,11 @@
     zone: zone.home
     event: enter
   action:
-    service: notify.ios_cathys_iphone
+    service: script.notify_person
     data:
+      device: "ios_cathys_iphone"
       title: "Home"
       message: "Ben arrived"
-      data:
-        push:
-          thread-id: "home-notification-group"
 
 - alias: "Last person leaves home"
   trigger:
@@ -76,13 +68,11 @@
     entity_id: group.household
     from: "home"
   action:
-    service: notify.ios_bens_iphone
+    service: script.notify_person
     data:
+      device: "ios_bens_iphone"
       title: "Home"
       message: "Everyone's left"
-      data:
-        push:
-          thread-id: "home-notification-group"
 
 - alias: "First person arrived home"
   trigger:
@@ -90,10 +80,8 @@
     entity_id: group.household
     to: "home"
   action:
-    service: notify.ios_bens_iphone
+    service: script.notify_person
     data:
+      device: "ios_bens_iphone"
       title: "Home"
       message: "First person arrived"
-      data:
-        push:
-          thread-id: "home-notification-group"

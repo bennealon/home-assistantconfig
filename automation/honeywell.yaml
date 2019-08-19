@@ -2,14 +2,14 @@
   trigger:
     platform: numeric_state
     entity_id: water_heater.dhw_controller
-    value_template: "{{ state.attributes.current_temperature }}"
+    value_template: "{{ state_attr('water_heater.dhw_controller', 'current_temperature') }}"
     below: 30
   condition:
     condition: state
     entity_id: water_heater.dhw_controller
-    state: 'off'
+    state: "off"
   action:
-    service: notify.household
+    service: script.notify_household
     data:
       title: "Hot Water"
-      message: "Temperature too low!"
+      message: "Temperature too low: {{ state_attr('water_heater.dhw_controller', 'current_temperature') }} degrees"

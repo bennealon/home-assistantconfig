@@ -8,7 +8,11 @@
 !*.md
 !gitupdate.sh
 !.travis.yml
+
+# included folders
 !automation
+!sensors
+!scripts
 
 # Ignore folders.
 .storage

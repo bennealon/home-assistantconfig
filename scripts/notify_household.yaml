@@ -1,0 +1,9 @@
+# data:
+#   title: "some title"
+#   message: "some message"
+
+sequence:
+  - service: notify.household
+    data_template:
+      title: "{{ title }}"
+      message: "{{ message }}"

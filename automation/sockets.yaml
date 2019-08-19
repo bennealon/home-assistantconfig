@@ -2,15 +2,15 @@
   trigger:
     platform: numeric_state
     entity_id: switch.tumble_dryer
-    value_template: "{{ state.attributes.current_a }}"
+    value_template: "{{ state_attr('switch.tumble_dryer', 'current_a') }}"
     below: 0.5
     for: "00:01:00"
   condition:
     condition: state
     entity_id: switch.tumble_dryer
-    state: 'on'
+    state: "on"
   action:
-    service: notify.household
+    service: script.notify_household
     data:
       title: "Tumble Dryer"
       message: "I'm finished!"
