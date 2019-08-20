@@ -1,13 +1,14 @@
+notify_person:
 # data:
 #   device: "ios_bens_iphone"
 #   title: "some title"
 #   message: "some message"
-
-sequence:
-  - service_template: notify.{{ device }}
-    data_template:
-      title: "{{ title }}"
-      message: "{{ message }}"
-      data:
-        push:
-          thread-id: "{{ title }}-notification-group"
+  alias: Notify Person
+  sequence:
+    - service_template: notify.{{ device }}
+      data_template:
+        title: "{{ title }}"
+        message: "{{ message }}"
+        data:
+          push:
+            thread-id: "{{ title }}-notification-group"

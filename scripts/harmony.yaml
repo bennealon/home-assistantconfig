@@ -1,0 +1,7 @@
+harmony_livingroom_freeview:
+  alias: Watch Freeview
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Freeview"
