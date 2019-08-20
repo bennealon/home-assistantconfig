@@ -2,17 +2,19 @@
 # A * ensures that everything will be ignored.
 *
 
-# You can whitelist files/folders with !, these will not be ignored.
+# You can whitelist files/folders with !, these will not be ignored.q
 !*.yaml
 !.gitignore
 !*.md
 !gitupdate.sh
 !.travis.yml
+!python_scripts/*.py
 
 # included folders
 !automation
 !sensors
 !scripts
+!python_scripts
 
 # Ignore folders.
 .storage

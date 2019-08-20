@@ -1,0 +1,10 @@
+# data:
+#   entity_id: group.work_sensors
+#   condition: sensor.occasion
+#   visible_state: 'work_morning'
+
+sequence:
+  - service: group.set_visibility
+    data_template:
+      entity_id: "{{ entity_id }}"
+      visible: "{{ is_state(condition, visible_state) }}"

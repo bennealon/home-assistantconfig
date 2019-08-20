@@ -1,0 +1,12 @@
+- alias: Work commute visibility
+  trigger:
+    - platform:  state
+      entity_id: sensor.occasion
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.group_visibility
+    data:
+      entity_id: group.work_commute
+      condition: sensor.occasion
+      visible_state: 'work_morning'
