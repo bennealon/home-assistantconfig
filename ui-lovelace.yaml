@@ -1,0 +1,113 @@
+title: Home
+views:
+  - badges:
+      - person.ben_nealon
+      - person.cathy_nealon
+      - weather.home
+    cards:
+      - entities:
+          - sensor.ben_time_to_home
+          - sensor.cathy_time_to_home
+        show_header_toggle: false
+        title: Home Commute
+        type: entities
+      - entity: climate.home
+        type: thermostat
+      - entities:
+          - water_heater.dhw_controller
+        title: ''
+        type: entities
+    path: home
+    title: Home
+  - badges: []
+    cards:
+      - entities:
+          - sensor.hallway_motion_sensor_light_level
+          - sensor.hallway_motion_sensor_temperature
+          - binary_sensor.hallway_motion_sensor_motion
+          - light.hallway_lamp
+        entity: light.hallway_lamp
+        state_image:
+          'on': /local/images/hallway_on.jpg
+          'off': /local/images/hallway_off.jpg
+        title: Hallway
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - entities:
+          - sensor.living_room_motion_sensor_light_level
+          - sensor.living_room_motion_sensor_temperature
+          - binary_sensor.living_room_motion_sensor_motion
+          - media_player.living_room_speaker
+          - climate.living_room
+          - remote.living_room
+          - light.living_room
+        entity: light.living_room
+        state_image:
+          'on': /local/images/livingroom_on.jpg
+          'off': /local/images/livingroom_off.jpg
+        title: Living Room
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - entities:
+          - entity: light.kitchen_books
+          - entity: light.kitchen_sink
+          - entity: light.kitchen_drainer
+          - entity: media_player.kitchen
+        show_header_toggle: true
+        title: Kitchen
+        type: entities
+      - entities:
+          - switch.tumble_dryer
+        show_header_toggle: true
+        title: Garage
+        type: entities
+      - cards:
+          - entity: media_player.shield
+            type: media-control
+          - entities:
+              - entity: remote.living_room
+              - entity: script.harmony_livingroom_freeview
+              - entity: script.harmony_livingroom_bluray
+              - entity: script.harmony_livingroom_netflix
+              - entity: script.harmony_livingroom_amazonprime
+              - entity: script.harmony_livingroom_rakuten
+              - entity: script.harmony_livingroom_plex
+              - entity: script.harmony_livingroom_shield
+            show_header_toggle: false
+            title: TV Remote
+            type: entities
+        type: vertical-stack
+    panel: false
+    path: default_view
+    title: Downstairs
+  - badges: []
+    cards:
+      - entities:
+          - entity: light.ben_bedside_lamp
+          - entity: climate.bedroom
+        show_header_toggle: true
+        title: Bedroom
+        type: entities
+      - entities:
+          - entity: light.games_room_left
+          - entity: light.games_room_right
+          - entity: climate.man_cave
+        show_header_toggle: true
+        title: Den
+        type: entities
+      - entity: climate.georgia_room
+        type: thermostat
+    path: upstairs
+    title: Upstairs
+  - badges: []
+    cards:
+      - entities:
+          - entity: automation.last_person_leaves_home
+          - entity: automation.first_person_arrived_home
+        title: Automation
+        type: entities
+    panel: false
+    path: automation
+    title: Automation
