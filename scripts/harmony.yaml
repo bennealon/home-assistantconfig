@@ -5,3 +5,51 @@ harmony_livingroom_freeview:
     data:
       entity_id: remote.living_room
       activity: "Freeview"
+
+harmony_livingroom_bluray:
+  alias: Watch Bluray
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Bluray"
+
+harmony_livingroom_netflix:
+  alias: Watch Netflix
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Netflix"
+
+harmony_livingroom_amazonprime:
+  alias: Watch Amazon Prime
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Amazon Prime"
+
+harmony_livingroom_rakuten:
+  alias: Watch Rakuten Rent Film
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Rakuten Rent Film"
+
+harmony_livingroom_plex:
+  alias: Watch Plex
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "Plex"
+
+harmony_livingroom_shield:
+  alias: Watch Shield TV
+  sequence:
+    service: remote.turn_on
+    data:
+      entity_id: remote.living_room
+      activity: "SHIELD TV"

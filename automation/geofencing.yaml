@@ -68,11 +68,24 @@
     entity_id: group.household
     from: "home"
   action:
-    service: script.notify_person
-    data:
-      device: "ios_bens_iphone"
-      title: "Home"
-      message: "Everyone's left"
+      # notify
+    - service: script.notify_person
+      data:
+        device: "ios_bens_iphone"
+        title: "Home"
+        message: "Everyone's left"
+      # turn off all switches, not specifying an entity does all
+    - service: switch.turn_off
+      # turn off TV
+    - service: remote.turn_off
+      data:
+        entity_id: remote.living_room
+      # Heating into away mode.
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.home
+        preset_mode: away
+
 
 - alias: "First person arrived home"
   trigger:
@@ -80,8 +93,14 @@
     entity_id: group.household
     to: "home"
   action:
-    service: script.notify_person
-    data:
-      device: "ios_bens_iphone"
-      title: "Home"
-      message: "First person arrived"
+    # notify
+    - service: script.notify_person
+      data:
+        device: "ios_bens_iphone"
+        title: "Home"
+        message: "First person arrived"
+    # reset heating out of away mode
+    - service: climate.set_preset_mode
+      data:
+        entity_id: climate.home
+        preset_mode: Reset
