@@ -9,11 +9,12 @@
 !gitupdate.sh
 !.travis.yml
 !python_scripts/*.py
-!www/images/*
+!www/images/people/*
+!www/images/rooms/*
 
 # included folders
-!www
-!www/images
+!www/images/people
+!www/images/rooms
 !automation
 !sensors
 !scripts

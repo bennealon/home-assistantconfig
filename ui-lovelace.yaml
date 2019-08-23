@@ -11,12 +11,14 @@ views:
         show_header_toggle: false
         title: Home Commute
         type: entities
-      - entity: climate.home
-        type: thermostat
-      - entities:
-          - water_heater.dhw_controller
-        title: ''
-        type: entities
+      - cards:
+          - type: thermostat
+            entity: climate.home
+          - type: entities
+            entities: 
+              - entity: water_heater.dhw_controller
+                name: 'Hot Water'
+        type: vertical-stack
     path: home
     title: Home
   - badges: []
@@ -28,57 +30,137 @@ views:
           - light.hallway_lamp
         entity: light.hallway_lamp
         state_image:
-          'on': /local/images/hallway_on.jpg
-          'off': /local/images/hallway_off.jpg
+          'on': /local/images/rooms/hallway_on.jpg
+          'off': /local/images/rooms/hallway_off.jpg
         title: Hallway
         type: picture-glance
         tap_action:
           action: toggle
-      - entities:
-          - sensor.living_room_motion_sensor_light_level
-          - sensor.living_room_motion_sensor_temperature
-          - binary_sensor.living_room_motion_sensor_motion
-          - media_player.living_room_speaker
-          - climate.living_room
-          - remote.living_room
-          - light.living_room
-        entity: light.living_room
-        state_image:
-          'on': /local/images/livingroom_on.jpg
-          'off': /local/images/livingroom_off.jpg
-        title: Living Room
-        type: picture-glance
-        tap_action:
-          action: toggle
-      - entities:
-          - entity: light.kitchen_books
-          - entity: light.kitchen_sink
-          - entity: light.kitchen_drainer
-          - entity: media_player.kitchen
-        show_header_toggle: true
-        title: Kitchen
-        type: entities
+      - cards:
+          - entities:
+              - sensor.living_room_motion_sensor_light_level
+              - sensor.living_room_motion_sensor_temperature
+              - binary_sensor.living_room_motion_sensor_motion
+              - media_player.living_room_speaker
+              - climate.living_room
+              - remote.living_room
+              - light.living_room
+            entity: light.living_room
+            state_image:
+              'on': /local/images/rooms/livingroom_on.jpg
+              'off': /local/images/rooms/livingroom_off.jpg
+            title: Living Room
+            type: picture-glance
+            tap_action:
+              action: toggle
+          - cards:
+            - entity: light.living_room
+              type: entity-button
+              name: 'Evening lights all'
+              icon: mdi:lightbulb-on
+              tap_action:
+                action: call-service
+                service: hue.hue_activate_scene
+                service_data:
+                  group_name: "Living room"
+                  scene_name: "Evening lights all"
+            - entity: light.living_room
+              type: entity-button
+              name: 'Evening light'
+              icon: mdi:lightbulb
+              tap_action:
+                action: call-service
+                service: hue.hue_activate_scene
+                service_data:
+                  group_name: "Living room"
+                  scene_name: "Evening light"
+            - entity: light.living_room
+              type: entity-button
+              name: 'Daytime bright'
+              icon: mdi:lightbulb-on-outline
+              tap_action:
+                action: call-service
+                service: hue.hue_activate_scene
+                service_data:
+                  group_name: "Living room"
+                  scene_name: "Daytime bright"
+            type: horizontal-stack
+          - type: conditional
+            conditions:
+              - entity: media_player.shield
+                state_not: "off"
+            card:
+              type: media-control
+              entity: media_player.shield
+          - cards:
+              - entity: remote.living_room
+                type: entity-button
+                name: 'Freeview'
+                icon: mdi:television-box
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: script.harmony_livingroom_freeview
+              - entity: remote.living_room
+                type: entity-button
+                name: 'bluray'
+                icon: mdi:disc-player
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: script.harmony_livingroom_bluray
+              - entity: remote.living_room
+                type: entity-button
+                name: 'Netflix'
+                icon: mdi:netflix
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: script.harmony_livingroom_netflix
+              - entity: remote.living_room
+                type: entity-button
+                name: 'Amazon Prime'
+                icon: mdi:amazon
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: script.harmony_livingroom_amazonprime
+            type: horizontal-stack
+          - cards:
+            - entity: remote.living_room
+              type: entity-button
+              name: 'Rakuten Rent'
+              icon: mdi:popcorn
+              tap_action:
+                action: call-service
+                service: script.harmony_livingroom_rakuten
+            - entity: remote.living_room
+              type: entity-button
+              name: 'plex'
+              icon: mdi:plex
+              tap_action:
+                action: call-service
+                service: script.harmony_livingroom_plex
+            - entity: remote.living_room
+              type: entity-button
+              name: 'Shield'
+              icon: mdi:controller-classic
+              tap_action:
+                action: call-service
+                service: script.harmony_livingroom_shield
+            type: horizontal-stack
+        type: vertical-stack
+      - cards:
+        - type: media-control
+          entity: media_player.kitchen
+        - type: light
+          entity: light.kitchen
+        type: vertical-stack
       - entities:
           - switch.tumble_dryer
-        show_header_toggle: true
+        show_header_toggle: false
         title: Garage
-        type: entities
-      - cards:
-          - entity: media_player.shield
-            type: media-control
-          - entities:
-              - entity: remote.living_room
-              - entity: script.harmony_livingroom_freeview
-              - entity: script.harmony_livingroom_bluray
-              - entity: script.harmony_livingroom_netflix
-              - entity: script.harmony_livingroom_amazonprime
-              - entity: script.harmony_livingroom_rakuten
-              - entity: script.harmony_livingroom_plex
-              - entity: script.harmony_livingroom_shield
-            show_header_toggle: false
-            title: TV Remote
-            type: entities
-        type: vertical-stack
+        type: entities          
     panel: false
     path: default_view
     title: Downstairs
