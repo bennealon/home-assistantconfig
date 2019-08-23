@@ -5,12 +5,24 @@ views:
       - person.cathy_nealon
       - weather.home
     cards:
-      - entities:
-          - sensor.ben_time_to_home
-          - sensor.cathy_time_to_home
-        show_header_toggle: false
-        title: Home Commute
-        type: entities
+      - type: conditional
+        conditions:
+            - entity: person.ben_nealon
+              state_not: "home"
+        card:
+           type: sensor
+           graph: line
+           entity: sensor.ben_time_to_home
+           name: 'Ben time to home'
+      - type: conditional
+        conditions:
+            - entity: person.cathy_nealon
+              state_not: "home"
+        card:
+           type: sensor
+           graph: line
+           entity: sensor.cathy_time_to_home
+           name: 'Cathy time to home'
       - cards:
           - type: thermostat
             entity: climate.home
@@ -157,7 +169,8 @@ views:
           entity: light.kitchen
         type: vertical-stack
       - entities:
-          - switch.tumble_dryer
+          - entity: switch.tumble_dryer
+            icon: mdi:power-socket-uk
         show_header_toggle: false
         title: Garage
         type: entities          
