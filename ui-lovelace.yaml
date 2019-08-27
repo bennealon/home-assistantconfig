@@ -23,6 +23,24 @@ views:
            graph: line
            entity: sensor.cathy_time_to_home
            name: 'Cathy time to home'
+      - type: conditional
+        conditions:
+            - entity: sensor.occasion
+              state: "work_morning"
+        card:
+           type: sensor
+           graph: line
+           entity: sensor.home_to_amplience
+           name: 'Amplience Commute'
+      - type: conditional
+        conditions:
+            - entity: sensor.occasion
+              state: "work_morning"
+        card:
+           type: sensor
+           graph: line
+           entity: sensor.home_to_north_tees_nhs
+           name: 'North Tees Commute'
       - cards:
           - type: thermostat
             entity: climate.home
@@ -68,34 +86,37 @@ views:
           - cards:
             - entity: light.living_room
               type: entity-button
-              name: 'Evening lights all'
+              name: 'Ambient all'
               icon: mdi:lightbulb-on
+              show_name: false
               tap_action:
                 action: call-service
                 service: hue.hue_activate_scene
                 service_data:
                   group_name: "Living room"
-                  scene_name: "Evening lights all"
+                  scene_name: "Ambient all"
             - entity: light.living_room
               type: entity-button
-              name: 'Evening light'
-              icon: mdi:lightbulb
+              name: 'Ambient lamps'
+              icon: mdi:lamp
+              show_name: false
               tap_action:
                 action: call-service
                 service: hue.hue_activate_scene
                 service_data:
                   group_name: "Living room"
-                  scene_name: "Evening light"
+                  scene_name: "Ambient lamps"
             - entity: light.living_room
               type: entity-button
-              name: 'Daytime bright'
-              icon: mdi:lightbulb-on-outline
+              name: 'Ambient wall'
+              icon: mdi:wall-sconce-flat
+              show_name: false
               tap_action:
                 action: call-service
                 service: hue.hue_activate_scene
                 service_data:
                   group_name: "Living room"
-                  scene_name: "Daytime bright"
+                  scene_name: "Ambient wall"
             type: horizontal-stack
           - type: conditional
             conditions:
@@ -107,12 +128,24 @@ views:
           - cards:
               - entity: remote.living_room
                 type: entity-button
+                name: 'Off'
+                icon: mdi:power
+                show_name: false
+                tap_action:
+                  action: call-service
+                  service: script.harmony_activity
+                  service_data:
+                    activity: 'PowerOff'
+              - entity: remote.living_room
+                type: entity-button
                 name: 'Freeview'
                 icon: mdi:television-box
                 show_name: false
                 tap_action:
                   action: call-service
-                  service: script.harmony_livingroom_freeview
+                  service: script.harmony_activity
+                  service_data:
+                    activity: 'Freeview'
               - entity: remote.living_room
                 type: entity-button
                 name: 'bluray'
@@ -120,7 +153,9 @@ views:
                 show_name: false
                 tap_action:
                   action: call-service
-                  service: script.harmony_livingroom_bluray
+                  service: script.harmony_activity
+                  service_data:
+                    activity: 'Bluray'
               - entity: remote.living_room
                 type: entity-button
                 name: 'Netflix'
@@ -128,52 +163,78 @@ views:
                 show_name: false
                 tap_action:
                   action: call-service
-                  service: script.harmony_livingroom_netflix
-              - entity: remote.living_room
-                type: entity-button
-                name: 'Amazon Prime'
-                icon: mdi:amazon
-                show_name: false
-                tap_action:
-                  action: call-service
-                  service: script.harmony_livingroom_amazonprime
+                  service: script.harmony_activity
+                  service_data:
+                    activity: 'Netflix'
             type: horizontal-stack
           - cards:
             - entity: remote.living_room
               type: entity-button
-              name: 'Rakuten Rent'
-              icon: mdi:popcorn
+              name: 'Amazon Prime'
+              icon: mdi:amazon
+              show_name: false
               tap_action:
                 action: call-service
-                service: script.harmony_livingroom_rakuten
+                service: script.harmony_activity
+                service_data:
+                  activity: 'Amazon Prime'
+            - entity: remote.living_room
+              type: entity-button
+              name: 'Rakuten Rent'
+              icon: mdi:popcorn
+              show_name: false
+              tap_action:
+                action: call-service
+                service: script.harmony_activity
+                service_data:
+                  activity: 'Rakuten Rent Film'
             - entity: remote.living_room
               type: entity-button
               name: 'plex'
               icon: mdi:plex
+              show_name: false
               tap_action:
                 action: call-service
-                service: script.harmony_livingroom_plex
+                service: script.harmony_activity
+                service_data:
+                  activity: 'Plex'
             - entity: remote.living_room
               type: entity-button
               name: 'Shield'
               icon: mdi:controller-classic
+              show_name: false
               tap_action:
                 action: call-service
-                service: script.harmony_livingroom_shield
+                service: script.harmony_activity
+                service_data:
+                  activity: 'SHIELD TV'
             type: horizontal-stack
         type: vertical-stack
       - cards:
+        - entities:
+            - light.kitchen
+          entity: light.kitchen
+          state_image:
+            'on': /local/images/rooms/kitchen_on.jpg
+            'off': /local/images/rooms/kitchen_off.jpg
+          title: Kitchen
+          type: picture-glance
+          tap_action:
+            action: toggle
         - type: media-control
           entity: media_player.kitchen
-        - type: light
-          entity: light.kitchen
         type: vertical-stack
       - entities:
           - entity: switch.tumble_dryer
             icon: mdi:power-socket-uk
-        show_header_toggle: false
+        entity: switch.tumble_dryer
+        state_image:
+          'on': /local/images/rooms/garage_on.jpg
+          'off': /local/images/rooms/garage_off.jpg
         title: Garage
-        type: entities          
+        type: picture-glance
+        tap_action:
+          action: toggle
     panel: false
     path: default_view
     title: Downstairs
@@ -186,23 +247,17 @@ views:
         title: Bedroom
         type: entities
       - entities:
-          - entity: light.games_room_left
-          - entity: light.games_room_right
+          - entity: light.games_room
           - entity: climate.man_cave
-        show_header_toggle: true
-        title: Den
-        type: entities
+        entity: light.games_room
+        state_image:
+          'on': /local/images/rooms/den_on.jpg
+          'off': /local/images/rooms/den_off.jpg
+        title: Paddock
+        type: picture-glance
+        tap_action:
+          action: toggle
       - entity: climate.georgia_room
         type: thermostat
     path: upstairs
     title: Upstairs
-  - badges: []
-    cards:
-      - entities:
-          - entity: automation.last_person_leaves_home
-          - entity: automation.first_person_arrived_home
-        title: Automation
-        type: entities
-    panel: false
-    path: automation
-    title: Automation

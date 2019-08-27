@@ -3,15 +3,3 @@ household:
   entities:
     - person.ben_nealon
     - person.cathy_nealon
-
-work_commute:
-  name: Work Commute
-  entities:
-    - sensor.home_to_amplience
-    - sensor.home_to_north_tees_nhs
-
-home_commute:
-  name: Home Commute
-  entities:
-    - sensor.ben_time_to_home
-    - sensor.cathy_time_to_home

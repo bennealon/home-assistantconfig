@@ -1,0 +1,7 @@
+- platform: group
+  name: all excluding hallway
+  entities:
+    - light.bedroom
+    - light.games_room
+    - light.kitchen
+    - light.living_room

@@ -8,10 +8,6 @@
       entity_id: person.cathy_nealon
       zone: zone.redcar_nhs
       event: leave
-  condition:
-    condition: state
-    entity_id: sensor.cathys_iphone_battery_state
-    state: "Charging"
   action:
     service: script.notify_person
     data:
@@ -25,10 +21,6 @@
     entity_id: person.ben_nealon
     zone: zone.amplience
     event: leave
-  condition:
-    condition: state
-    entity_id: sensor.ben_s_iphone_battery_state
-    state: "Charging"
   action:
     service: script.notify_person
     data:
@@ -85,6 +77,10 @@
       data:
         entity_id: climate.home
         preset_mode: away
+      # all lights off, excluding hallway.
+    - service: light.turn_off
+      data:
+        entity_id: light.all_excluding_hallway
 
 
 - alias: "First person arrived home"

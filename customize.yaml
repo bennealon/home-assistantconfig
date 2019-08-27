@@ -1,5 +1,11 @@
 person.ben_nealon:
   entity_picture: /local/images/people/ben.jpg
 
+device_tracker.bens_iphone:
+  entity_picture: /local/images/people/ben.jpg
+
 person.cathy_nealon:
+  entity_picture: /local/images/people/cathy.jpg
+
+device_tracker.cathys_iphone:
   entity_picture: /local/images/people/cathy.jpg
