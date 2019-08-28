@@ -17,9 +17,6 @@ duckdns:
   domain: !secret dns_domain
   access_token: !secret dns_access_token
 
-shell_command:
-  renew_ssl: ~/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
-
 # Text to speech
 tts:
   - platform: google_translate

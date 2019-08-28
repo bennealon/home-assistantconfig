@@ -1,8 +1,6 @@
 #!/bin/bash
 
-cd /home/homeassistant/.homeassistant
-source /srv/homeassistant/bin/activate
-hass --script check_config
+cd /usr/share/hassio/homeassistant/
 
 git add .
 git diff --staged

@@ -1,13 +1,13 @@
 - name: Ben
   id: bennealon
-  user_id: e0c4869a573546a5af8f7d7806694475
+  user_id: e91d019a01cc4900bacea4b835010aeb
   device_trackers:
     - device_tracker.bens_iphone
     - device_tracker.bens_iphone_2
 
 - name: Cathy
   id: cathynealon
-  user_id: 253fab4874c3419eaf26527c5fd1650c
+  user_id: 48363e1512274bd380e3798a3b0ac7b7
   device_trackers:
     - device_tracker.cathys_iphone
     - device_tracker.cathys_iphone_2
