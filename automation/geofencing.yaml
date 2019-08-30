@@ -68,6 +68,8 @@
         message: "Everyone's left"
       # turn off all switches, not specifying an entity does all
     - service: switch.turn_off
+      data:
+        entity_id: all
       # turn off TV
     - service: remote.turn_off
       data:
@@ -81,6 +83,10 @@
     - service: light.turn_off
       data:
         entity_id: light.all_excluding_hallway
+      # notify IFTTT
+    - service: ifttt.trigger
+      data: {"event": "last_person_leaves_home"}
+        
 
 
 - alias: "First person arrived home"
@@ -100,3 +106,6 @@
       data:
         entity_id: climate.home
         preset_mode: Reset
+    # notify IFTTT
+    - service: ifttt.trigger
+      data: {"event": "first_person_arrives_home"}

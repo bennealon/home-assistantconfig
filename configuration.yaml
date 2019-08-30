@@ -21,6 +21,9 @@ duckdns:
 tts:
   - platform: google_translate
 
+ifttt:
+  key: !secret ifttt_key
+
 evohome:
   username: !secret evohome_username
   password: !secret evohome_password
