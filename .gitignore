@@ -17,6 +17,7 @@
 !python_scripts
 !www/
 !www/**
+!lovelace
 
 # Ignore folders.
 .storage

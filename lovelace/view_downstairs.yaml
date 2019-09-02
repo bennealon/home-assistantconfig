@@ -1,0 +1,194 @@
+badges: []
+cards:
+  - entities:
+      - sensor.hallway_motion_sensor_light_level
+      - sensor.hallway_motion_sensor_temperature
+      - binary_sensor.hallway_motion_sensor_motion
+      - light.hallway_lamp
+    entity: light.hallway_lamp
+    state_image:
+      "on": /local/images/rooms/hallway_on.jpg
+      "off": /local/images/rooms/hallway_off.jpg
+    title: Hallway
+    type: picture-glance
+    tap_action:
+      action: toggle
+  - cards:
+      - entities:
+          - sensor.living_room_motion_sensor_light_level
+          - sensor.living_room_motion_sensor_temperature
+          - binary_sensor.living_room_motion_sensor_motion
+          - media_player.living_room_speaker
+          - climate.living_room
+          - remote.living_room
+          - light.living_room
+        entity: light.living_room
+        state_image:
+          "on": /local/images/rooms/livingroom_on.jpg
+          "off": /local/images/rooms/livingroom_off.jpg
+        title: Living Room
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - cards:
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient all"
+            icon: mdi:lightbulb-on
+            show_name: false
+            tap_action:
+              action: call-service
+              service: hue.hue_activate_scene
+              service_data:
+                group_name: "Living room"
+                scene_name: "Ambient all"
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient lamps"
+            icon: mdi:lamp
+            show_name: false
+            tap_action:
+              action: call-service
+              service: hue.hue_activate_scene
+              service_data:
+                group_name: "Living room"
+                scene_name: "Ambient lamps"
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient wall"
+            icon: mdi:wall-sconce-flat
+            show_name: false
+            tap_action:
+              action: call-service
+              service: hue.hue_activate_scene
+              service_data:
+                group_name: "Living room"
+                scene_name: "Ambient wall"
+        type: horizontal-stack
+      - type: conditional
+        conditions:
+          - entity: media_player.shield
+            state_not: "off"
+        card:
+          type: media-control
+          entity: media_player.shield
+      - cards:
+          - entity: remote.living_room
+            type: entity-button
+            name: "Off"
+            icon: mdi:power
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "PowerOff"
+          - entity: remote.living_room
+            type: entity-button
+            name: "Freeview"
+            icon: mdi:television-box
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Freeview"
+          - entity: remote.living_room
+            type: entity-button
+            name: "bluray"
+            icon: mdi:disc-player
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Bluray"
+          - entity: remote.living_room
+            type: entity-button
+            name: "Netflix"
+            icon: mdi:netflix
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Netflix"
+        type: horizontal-stack
+      - cards:
+          - entity: remote.living_room
+            type: entity-button
+            name: "Amazon Prime"
+            icon: mdi:amazon
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Amazon Prime"
+          - entity: remote.living_room
+            type: entity-button
+            name: "Rakuten Rent"
+            icon: mdi:popcorn
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Rakuten Rent Film"
+          - entity: remote.living_room
+            type: entity-button
+            name: "plex"
+            icon: mdi:plex
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Plex"
+          - entity: remote.living_room
+            type: entity-button
+            name: "Shield"
+            icon: mdi:controller-classic
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "SHIELD TV"
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - entities:
+          - light.kitchen
+          - media_player.kitchen
+        entity: light.kitchen
+        state_image:
+          "on": /local/images/rooms/kitchen_on.jpg
+          "off": /local/images/rooms/kitchen_off.jpg
+        title: Kitchen
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+          - entity: media_player.kitchen
+            state_not: "paused"
+        card:
+          type: media-control
+          entity: media_player.kitchen
+    type: vertical-stack
+  - entities:
+      - entity: switch.tumble_dryer
+        icon: mdi:power-socket-uk
+    entity: switch.tumble_dryer
+    state_image:
+      "on": /local/images/rooms/garage_on.jpg
+      "off": /local/images/rooms/garage_off.jpg
+    title: Garage
+    type: picture-glance
+    tap_action:
+      action: toggle
+panel: false
+path: default_view
+title: Downstairs
+icon: mdi:home-floor-g

@@ -1,0 +1,24 @@
+badges: []
+cards:
+  - entities:
+      - entity: light.ben_bedside_lamp
+      - entity: climate.bedroom
+    show_header_toggle: true
+    title: Bedroom
+    type: entities
+  - entities:
+      - entity: light.games_room
+      - entity: climate.man_cave
+    entity: light.games_room
+    state_image:
+      "on": /local/images/rooms/den_on.jpg
+      "off": /local/images/rooms/den_off.jpg
+    title: Paddock
+    type: picture-glance
+    tap_action:
+      action: toggle
+  - entity: climate.georgia_room
+    type: thermostat
+path: upstairs
+title: Upstairs
+icon: mdi:home-floor-1

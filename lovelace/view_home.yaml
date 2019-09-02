@@ -1,0 +1,61 @@
+badges:
+  - person.ben_nealon
+  - person.cathy_nealon
+  - weather.home
+theme: dark-mode
+cards:
+  - type: map
+    aspect_ratio: 16x9
+    entities:
+      - person.ben_nealon
+      - person.cathy_nealon
+      - zone.home      
+  - type: conditional
+    conditions:
+      - entity: sensor.occasion
+        state: "work_morning"
+    card:
+      type: entities
+      show_header_toggle: false
+      title: Commute times
+      entities:
+        - entity: sensor.home_to_amplience
+          name: Amplience
+        - entity: sensor.home_to_north_tees_nhs
+          name: North Tees
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: water_heater.dhw_controller
+        icon: mdi:thermometer-plus
+        color_type: card
+        confirmation: Hot Water Boosted for 1 Hour
+        name: >
+          [[[
+            var temperature = states['water_heater.dhw_controller'].attributes.current_temperature;
+            return 'Hot Water : ' + (temperature ? temperature : '0') + '℃';   
+          ]]]
+        state:
+          - value: "on"
+            color: red
+        tap_action:
+          action: call-service
+          service: script.hot_water_boost
+          service_data:
+            duration_hour: 1
+        dbltap_action:
+          action: more-info
+      - type: entity-button
+        entity: climate.georgia_room
+        name: Georgia Nap
+        icon: mdi:sleep
+        tap_action:
+          action: call-service
+          service: script.georgia_room_temperature
+          service_data:
+            temperature: 18
+            duration_hour: 2
+
+path: home
+title: Home
+icon: mdi:home
