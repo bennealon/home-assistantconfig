@@ -5,52 +5,74 @@ views:
       - person.cathy_nealon
       - weather.home
     cards:
+      - type: map
+        aspect_ratio: 16x9
+        entities:
+          - person.ben_nealon
+          - person.cathy_nealon
+          - zone.home
       - type: conditional
         conditions:
           - entity: person.ben_nealon
             state_not: "home"
         card:
-          type: sensor
-          graph: line
-          entity: sensor.ben_time_to_home
-          name: "Ben time to home"
+          type: entities
+          show_header_toggle: false
+          entities: 
+            - entity: sensor.ben_time_to_home
+              name: Ben time to home
       - type: conditional
         conditions:
           - entity: person.cathy_nealon
             state_not: "home"
         card:
-          type: sensor
-          graph: line
-          entity: sensor.cathy_time_to_home
-          name: "Cathy time to home"
+          type: entities
+          show_header_toggle: false
+          entities: 
+            - entity: sensor.cathy_time_to_home
+              name: Cathy time to home
       - type: conditional
         conditions:
           - entity: sensor.occasion
             state: "work_morning"
         card:
-          type: sensor
-          graph: line
-          entity: sensor.home_to_amplience
-          name: "Amplience Commute"
-      - type: conditional
-        conditions:
-          - entity: sensor.occasion
-            state: "work_morning"
-        card:
-          type: sensor
-          graph: line
-          entity: sensor.home_to_north_tees_nhs
-          name: "North Tees Commute"
-      - cards:
-          - type: thermostat
-            entity: climate.home
-          - type: entities
-            entities:
-              - entity: water_heater.dhw_controller
-                name: "Hot Water"
-        type: vertical-stack
+          type: entities
+          show_header_toggle: false
+          title: Commute times
+          entities: 
+            - entity: sensor.home_to_amplience
+              name: Amplience
+            - entity: sensor.home_to_north_tees_nhs
+              name: North Tees
+      - type: entities
+        entities:
+          - entity: water_heater.dhw_controller
+            name: "Hot Water"
+      - type: horizontal-stack 
+        cards:
+          - type: entity-button
+            entity: water_heater.dhw_controller
+            name: Hot Water
+            icon: mdi:thermometer-plus
+            tap_action:
+              action: call-service
+              service: script.hot_water_boost
+              service_data:
+                duration_hour: 1
+          - type: entity-button
+            entity: climate.georgia_room
+            name: Georgia Nap
+            icon: mdi:sleep
+            tap_action:
+              action: call-service
+              service: script.georgia_room_temperature
+              service_data:
+                temperature: 18
+                duration_hour: 2
+
     path: home
     title: Home
+    icon: mdi:home
   - badges: []
     cards:
       - entities:
@@ -238,6 +260,7 @@ views:
     panel: false
     path: default_view
     title: Downstairs
+    icon: mdi:home-floor-g
   - badges: []
     cards:
       - entities:
@@ -261,3 +284,4 @@ views:
         type: thermostat
     path: upstairs
     title: Upstairs
+    icon: mdi:home-floor-1

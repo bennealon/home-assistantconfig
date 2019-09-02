@@ -85,7 +85,8 @@
         entity_id: light.all_excluding_hallway
       # notify IFTTT
     - service: ifttt.trigger
-      data: {"event": "last_person_leaves_home"}
+      data: 
+        event: "heatmiser_away"
         
 
 
@@ -108,4 +109,5 @@
         preset_mode: Reset
     # notify IFTTT
     - service: ifttt.trigger
-      data: {"event": "first_person_arrives_home"}
+      data:
+        event: "heatmiser_home"
