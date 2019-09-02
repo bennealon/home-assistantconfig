@@ -1,4 +1,17 @@
+button_card_templates:
+  main_template_inactive:
+    styles:
+      icon:
+        - color: var(--paper-item-icon-color)
+  main_template_active:
+    styles:
+      icon:
+        - color: auto
+
 title: Home
+resources:
+  - url: /local/custom-cards/button-card.js
+    type: module
 views:
   - badges:
       - person.ben_nealon
@@ -18,7 +31,7 @@ views:
         card:
           type: entities
           show_header_toggle: false
-          entities: 
+          entities:
             - entity: sensor.ben_time_to_home
               name: Ben time to home
       - type: conditional
@@ -28,7 +41,7 @@ views:
         card:
           type: entities
           show_header_toggle: false
-          entities: 
+          entities:
             - entity: sensor.cathy_time_to_home
               name: Cathy time to home
       - type: conditional
@@ -39,26 +52,33 @@ views:
           type: entities
           show_header_toggle: false
           title: Commute times
-          entities: 
+          entities:
             - entity: sensor.home_to_amplience
               name: Amplience
             - entity: sensor.home_to_north_tees_nhs
               name: North Tees
-      - type: entities
-        entities:
-          - entity: water_heater.dhw_controller
-            name: "Hot Water"
-      - type: horizontal-stack 
+      - type: horizontal-stack
         cards:
-          - type: entity-button
+          - type: "custom:button-card"
             entity: water_heater.dhw_controller
-            name: Hot Water
             icon: mdi:thermometer-plus
+            color_type: card
+            confirmation: Hot Water Boosted for 1 Hour
+            name: >
+              [[[
+                var temperature = states['water_heater.dhw_controller'].attributes.current_temperature;
+                return 'Hot Water : ' + (temperature ? temperature : '0') + '℃';   
+              ]]]
+            state:
+              - value: "on"
+                color: red
             tap_action:
               action: call-service
               service: script.hot_water_boost
               service_data:
                 duration_hour: 1
+            dbltap_action:
+              action: more-info
           - type: entity-button
             entity: climate.georgia_room
             name: Georgia Nap
@@ -235,6 +255,7 @@ views:
       - cards:
           - entities:
               - light.kitchen
+              - media_player.kitchen
             entity: light.kitchen
             state_image:
               "on": /local/images/rooms/kitchen_on.jpg
@@ -243,8 +264,13 @@ views:
             type: picture-glance
             tap_action:
               action: toggle
-          - type: media-control
-            entity: media_player.kitchen
+          - type: conditional
+            conditions:
+              - entity: media_player.kitchen
+                state_not: "paused"
+            card:
+              type: media-control
+              entity: media_player.kitchen
         type: vertical-stack
       - entities:
           - entity: switch.tumble_dryer

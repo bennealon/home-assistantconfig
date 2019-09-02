@@ -6,7 +6,3 @@ hot_water_boost:
       data_template:
         event: "hot_water_on"
         value1: "{{ duration_hour }}"
-    - service: script.notify_household
-      data_template:
-        title: "Hot Water"
-        message: "Boosted for {{duration_hour }} hour."
