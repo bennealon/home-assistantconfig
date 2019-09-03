@@ -1,0 +1,92 @@
+- alias: "Living room motion daytime"
+# Detects motion when
+# light level below 15lux
+# AND
+# During the daytime
+# Set light timer 10 mins
+# Set wall lights on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_motion_sensor_motion
+    to: "on"
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.living_room_motion_sensor_light_level
+      below: 15
+    - condition: sun
+      after: sunrise
+      after_offset: "+00:30:00"
+    - condition: sun
+      before: sunset
+      before_offset: "-00:30:00"
+  action:
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.living_room_motion
+    - service: timer.start
+      data:
+        entity_id: timer.living_room_motion
+        duration: '00:10:00'
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Living room"
+        scene_name: "Ambient wall"
+
+- alias: "Living room motion evening"
+# Detects motion when
+# light level below 15lux
+# AND
+# During the evening (need to use OR here for the two ends of the day)
+# Set light timer 3 mins between 01:00 -> 06:00, otherwise 15 mins.
+# Set ambient lights on
+  trigger:
+    platform: state
+    entity_id: binary_sensor.living_room_motion_sensor_motion
+    to: "on"
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.living_room_motion_sensor_light_level
+        below: 15
+      - condition: or
+        conditions:
+        - condition: sun
+          after: sunset
+          after_offset: "-00:30:00"
+        - condition: sun
+          before: sunrise
+          before_offset: "+00:30:00"
+  action:
+# cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.living_room_motion
+    - service: timer.start
+      data_template:
+        entity_id: timer.living_room_motion
+        duration: >
+          {% if now().hour >= 1 and now().hour < 6 %}
+            00:03:00
+          {% else %}
+            00:15:00
+          {% endif %}        
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Living room"
+        scene_name: "Ambient lamps"
+
+- alias: "Living room motion timer finished"
+# Light timer finished
+# Turn lights off with 30 seconds fade.
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.living_room_motion
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room
+        transition: 30

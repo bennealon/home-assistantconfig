@@ -1,2 +1,3 @@
-# hot_water_boost:
-#   duration: '00:30:00'
+living_room_motion:
+  duration: '00:15:00'
+  

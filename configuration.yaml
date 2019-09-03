@@ -60,4 +60,4 @@ sensor: !include_dir_merge_list sensors/
 climate: !include climate.yaml
 notify: !include notify.yaml
 light: !include light.yaml
-# timer: !include timers.yaml
+timer: !include timers.yaml
