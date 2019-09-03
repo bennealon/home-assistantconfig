@@ -1,3 +1,5 @@
 living_room_motion:
   duration: '00:15:00'
-  
+
+hallway_motion:
+  duration: '00:15:00'
