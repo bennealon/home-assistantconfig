@@ -1,8 +1,11 @@
+background: var(--background-image)
 badges:
   - person.ben_nealon
   - person.cathy_nealon
   - weather.home
-theme: dark-mode
+path: home
+title: Home
+icon: mdi:home
 cards:
   - type: map
     aspect_ratio: 16x9
@@ -55,7 +58,3 @@ cards:
           service_data:
             temperature: 18
             duration_hour: 2
-
-path: home
-title: Home
-icon: mdi:home
