@@ -31,7 +31,7 @@ cards:
       - type: "custom:button-card"
         entity: water_heater.dhw_controller
         icon: mdi:thermometer-plus
-        color_type: card
+        color_type: icon
         confirmation: Hot Water Boosted for 1 Hour
         name: >
           [[[
@@ -46,7 +46,7 @@ cards:
           service: script.hot_water_boost
           service_data:
             duration_hour: 1
-        dbltap_action:
+        hold_action:
           action: more-info
       - type: entity-button
         entity: climate.georgia_room

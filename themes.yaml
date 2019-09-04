@@ -1,32 +1,96 @@
 darkcyan:
-# Background image
+  # Background image
   background-image: 'center / cover no-repeat url("/local/backgrounds/vintage-colors-blur.jpg") fixed'
-# Main colors that can be changed
-  primary-color: "#bd947e"
-  disabled-text-color: "#545454"
-  divider-color: "rgba(255, 255, 255, 0.12)"
-  paper-card-background-color: "rgba(0, 0, 0, 0.58)"
+  # Main colors that can be changed    
   paper-grey-200: "#191919"
-  paper-item-icon-color: "#d3d3d3"
-  paper-listbox-background-color: "#202020"
-  paper-listbox-color: "#FFFFFF"      
-  primary-background-color: "#303030"
-  primary-text-color: "#cfcfcf"      
-  secondary-background-color: "#2b2b2b"
-  secondary-text-color: "#04a7bc"
-# Colors based on variables, see above
-  label-badge-background-color: "var(--secondary-background-color)"
-  label-badge-text-color: "var(--text-primary-color)"
-  paper-card-header-color: "#var(--paper-item-icon-color)"
+  paper-item-icon-color: "#d3d3d3" 
+  # Colors based on variables, see above  
   paper-grey-50: "var(--primary-text-color)"
   paper-item-icon-active-color: "var(--primary-color)"
   paper-item-icon_-_color: "var(--primary-text-color)"
+  ### Main Interface Colors ###
+  primary-color: "#bd947e"
+  primary-background-color: "#303030"
+  secondary-background-color: "#2b2b2b"
+  divider-color: "rgba(255, 255, 255, 0.12)"
+  ### Text ###
+  primary-text-color: "#cfcfcf"
+  secondary-text-color: "#04a7bc"
+  disabled-text-color: "#545454"
+  ### sidebar menu ###
+  sidebar-icon-color: "var(--primary-text-color)"
+  ### Sliders ###
   paper-slider-active-color: "var(--primary-color)"
   paper-slider-knob-color: "var(--primary-color)"
   paper-slider-knob-start-color: "var(--primary-color)"
   paper-slider-pin-color: "var(--primary-color)"
-  paper-slider-secondary-color: "var(--light-primary-color)"     
+  paper-slider-secondary-color: "var(--light-primary-color)"
+  ### Labels ###
+  label-badge-background-color: "var(--secondary-background-color)"
+  label-badge-text-color: "var(--text-primary-color)"
+  ### Cards ###
+  paper-card-header-color: "#var(--paper-item-icon-color)"
+  paper-card-background-color: "rgba(0, 0, 0, 0.58)"
+  paper-listbox-color: "#FFFFFF"
+  paper-listbox-background-color: "#202020"
+  ### Toggles ###
   paper-toggle-button-checked-ink-color: "var(--dark-primary-color)"
   paper-toggle-button-checked-button-color: "var(--primary-color)"
   paper-toggle-button-checked-bar-color: "var(--light-primary-color)"
   paper-toggle-button-unchecked-bar-color: "var(--primary-text-color)"
+
+clear:
+  # Background image
+  background-image: 'center / cover no-repeat url("/local/backgrounds/background_light2.jpg") fixed'
+
+  # Colors
+  text-color: '#636B75'                                                           # Grey text
+  text-medium-color: '#8c96a5'                                                    # Medium grey text
+  text-light-color: '#BAC0C6'                                                     # Light grey text
+  accent-color: '#00a1ff'                                                         # Blue
+  background-color: '#F7F8F9'                                                     # Light grey background
+  background-color-2: '#F4F5F6'                                                   # Light grey background
+  background-card-color: 'rgba(255,255,255,1.0)'                                  # White background
+  border-color: '#EAEAEA'                                                         # Light grey border
+
+  # Header
+  primary-color: 'var(--text-color)'                                              # Background
+  text-primary-color: '#FFF'                                                      # Text
+  
+  # Left Menu
+  paper-listbox-background-color: 'var(--background-color)'                       # Background
+
+  # UI
+  paper-card-header-color: 'var(--text-color)'                                    # Title in settings
+  primary-background-color: 'var(--background-color)'                             # Background (also title background in left menu)
+  
+  # Card
+  paper-card-background-color: 'var(--background-card-color)'                     # Background
+  dark-primary-color: 'var(--text-color)'
+  primary-text-color: 'var(--text-color)'
+  paper-listbox-color: 'var(--text-color)'
+  light-primary-color: 'var(--text-light-color)'
+  secondary-text-color: 'var(--text-medium-color)'
+  disabled-text-color: 'var(--text-light-color)'
+  paper-dialog-button-color: 'var(--text-color)'
+  secondary-background-color: 'var(--background-color-2)'                         # Background more info title
+
+  # Icons
+  paper-item-icon-color: 'var(--text-light-color)'                                # Off
+  paper-item-icon-active-color: 'var(--accent-color)'                             # On
+  
+  # Switches
+  paper-toggle-button-checked-button-color: '#FFF'                                # Knob On
+  paper-toggle-button-checked-bar-color: '#0077FF'                                # Background On
+  paper-toggle-button-unchecked-button-color: '#FFF'                              # Knob Off
+  paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'           # Background Off
+  
+  # Shadows
+  shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
+  shadow-elevation-4dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-6dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-8dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-10dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-12dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-14dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
+  shadow-elevation-16dp_-_box-shadow: '0px 0px 0px 3px var(--light-color)'

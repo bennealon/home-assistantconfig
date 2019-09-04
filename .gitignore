@@ -1,7 +1,6 @@
 # Example .gitignore file for your config dir.
 # A * ensures that everything will be ignored.
 *
-**.DS_Store
 
 # You can whitelist files/folders with !, these will not be ignored.q
 !*.yaml
@@ -19,6 +18,10 @@
 !www/
 !www/**
 !lovelace
+
+# Ignore system-generated files
+.DS_Store
+._*
 
 # Ignore folders.
 .storage

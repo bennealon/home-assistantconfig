@@ -1,11 +1,3 @@
-main_template_inactive:
-  styles:
-    icon:
-      - color: var(--paper-item-icon-color)
-main_template_active:
-  styles:
-    icon:
-      - color: auto
 apple_theme:
   styles:
     card:
