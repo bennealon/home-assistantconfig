@@ -8,6 +8,8 @@ resources:
     type: module
   - url: /local/custom-cards/simple-thermostat.js?v=0.26.0
     type: module
+  - url: /local/custom-cards/simple-weather-card-bundle.js?v=0.5.0
+    type: module
 
 cch:
   options: clock

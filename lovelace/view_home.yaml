@@ -2,17 +2,25 @@ background: var(--background-image)
 badges:
   - person.ben_nealon
   - person.cathy_nealon
-  - weather.home
 path: home
 title: Home
 icon: mdi:home
-cards:
+cards:  
+  - type: entities
+    entities:
+      - type: cast
+        name: Home Assistant Cast
+        view: home
+        icon: mdi:cast
   - type: map
     aspect_ratio: 16x9
     entities:
       - person.ben_nealon
       - person.cathy_nealon
       - zone.home      
+  - type: "custom:simple-weather-card"
+    entity: weather.home
+    name: at home
   - type: conditional
     conditions:
       - entity: sensor.occasion

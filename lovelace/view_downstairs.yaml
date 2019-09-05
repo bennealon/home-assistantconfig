@@ -1,6 +1,12 @@
 background: var(--background-image)
 badges: []
 cards:
+  - type: entities
+    entities:
+      - type: cast
+        name: Home Assistant Cast
+        view: downstairs
+        icon: mdi:cast
   - entities:
       - sensor.hallway_motion_sensor_light_level
       - sensor.hallway_motion_sensor_temperature
@@ -162,6 +168,7 @@ cards:
       - entities:
           - light.kitchen
           - media_player.kitchen
+          - media_player.kitchen_display
         entity: light.kitchen
         state_image:
           "on": /local/images/rooms/kitchen_on.jpg
@@ -177,6 +184,13 @@ cards:
         card:
           type: media-control
           entity: media_player.kitchen
+      - type: conditional
+        conditions:
+          - entity: media_player.kitchen_display
+            state_not: "off"
+        card:
+          type: media-control
+          entity: media_player.kitchen_display
     type: vertical-stack
   - entities:
       - entity: switch.tumble_dryer
@@ -190,6 +204,6 @@ cards:
     tap_action:
       action: toggle
 panel: false
-path: default_view
+path: downstairs
 title: Downstairs
 icon: mdi:home-floor-g

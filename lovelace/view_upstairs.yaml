@@ -1,6 +1,12 @@
 background: var(--background-image)
 badges: []
 cards:
+  - type: entities
+    entities:
+      - type: cast
+        name: Home Assistant Cast
+        view: upstairs
+        icon: mdi:cast
   - type: entity-button
     entity: light.ben_bedside_lamp
     hold_action:

@@ -16,3 +16,7 @@ https://maykar.github.io/compact-custom-header/Main-Config-Options/
 
 `https://github.com/nervetattoo/simple-thermostat`
 sha: 26ea95bcd4d96ac4e8ce6f7a56ac52bb429fff35
+
+## simple-weather-card.js v0.5.0
+sha: 22733c9b7c20406ce12036d32d6d7db3b28318f3
+`https://github.com/kalkih/simple-weather-card`
