@@ -10,6 +10,8 @@ resources:
     type: module
   - url: /local/custom-cards/simple-weather-card-bundle.js?v=0.5.0
     type: module
+  - url: /local/custom-cards/atomic_calendar.js?v=0.8.5
+    type: module
 
 cch:
   options: clock

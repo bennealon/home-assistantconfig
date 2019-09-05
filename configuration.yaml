@@ -54,6 +54,10 @@ remote:
     name: Living room
     activity: Freeview
 
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_client_secret
+
 group: !include groups.yaml
 person: !include people.yaml
 device_tracker: !include device_tracker.yaml

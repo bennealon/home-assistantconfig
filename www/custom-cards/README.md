@@ -20,3 +20,7 @@ sha: 26ea95bcd4d96ac4e8ce6f7a56ac52bb429fff35
 ## simple-weather-card.js v0.5.0
 sha: 22733c9b7c20406ce12036d32d6d7db3b28318f3
 `https://github.com/kalkih/simple-weather-card`
+
+## Atomic Calendar v0.8.5
+sha: bdabebd82822467424b5291a980ae88be4f6fcf0
+`https://github.com/atomic7777/atomic_calendar`

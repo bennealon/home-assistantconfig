@@ -12,6 +12,20 @@ cards:
         name: Home Assistant Cast
         view: home
         icon: mdi:cast
+  - type: "custom:atomic-calendar"
+    title: Calendar
+    showColors: true
+    entities:
+      - entity: calendar.family_calendar
+        titleColor: green
+      - entity: calendar.nursery
+        titleColor: blue
+      - entity: calendar.cathy_work
+        titleColor: orange
+      - entity: calendar.meals
+        titleColor: purple
+      - entity: calendar.ben_trainerroad_calendar
+        titleColor: red      
   - type: map
     aspect_ratio: 16x9
     entities:
