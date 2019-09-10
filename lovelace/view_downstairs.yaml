@@ -134,16 +134,6 @@ cards:
                 activity: "Amazon Prime"
           - entity: remote.living_room
             type: entity-button
-            name: "Rakuten Rent"
-            icon: mdi:popcorn
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Rakuten Rent Film"
-          - entity: remote.living_room
-            type: entity-button
             name: "plex"
             icon: mdi:plex
             show_name: false

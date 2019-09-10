@@ -1,0 +1,5 @@
+hallway_light_off_time:
+  name: Time Hallway light turns off
+  has_date: false
+  has_time: true
+  initial: 00:00:00
