@@ -1,5 +1,6 @@
-living_room_motion:
+living_room_light:
   duration: '00:15:00'
-
-hallway_motion:
+hallway_light:
   duration: '00:15:00'
+tumble_dryer:
+  duration: '01:00:00'

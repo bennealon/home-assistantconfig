@@ -23,10 +23,10 @@
   # cancel any pre-existing.
     - service: timer.cancel
       data_template:
-        entity_id: timer.hallway_motion
+        entity_id: timer.hallway_light
     - service: timer.start
       data:
-        entity_id: timer.hallway_motion
+        entity_id: timer.hallway_light
         duration: '00:01:00'
     - service: hue.hue_activate_scene
       data:
@@ -62,10 +62,10 @@
 # cancel any pre-existing.
     - service: timer.cancel
       data_template:
-        entity_id: timer.hallway_motion
+        entity_id: timer.hallway_light
     - service: timer.start
       data_template:
-        entity_id: timer.hallway_motion
+        entity_id: timer.hallway_light
         duration: '00:01:00'       
     - service: hue.hue_activate_scene
       data:
@@ -79,7 +79,7 @@
     platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.hallway_motion
+      entity_id: timer.hallway_light
   condition:
     condition: or
     conditions:
@@ -114,7 +114,7 @@
     platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.hallway_motion
+      entity_id: timer.hallway_light
   condition:
     condition: or
     conditions:

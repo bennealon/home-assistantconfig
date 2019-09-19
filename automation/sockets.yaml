@@ -10,7 +10,43 @@
     entity_id: switch.tumble_dryer
     state: "on"
   action:
-    service: script.notify_household
-    data:
-      title: "Tumble Dryer"
-      message: "I'm finished!"
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.tumble_dryer
+    - service: timer.start
+      data_template:
+        entity_id: timer.tumble_dryer
+        duration: '00:30:00'
+    - service: script.notify_household
+      data:
+        title: "Tumble Dryer"
+        message: "I'm finished!"
+
+- alias: "Tumble dryer started"
+  trigger:
+    platform: numeric_state
+    entity_id: switch.tumble_dryer
+    value_template: "{{ state_attr('switch.tumble_dryer', 'current_a') }}"
+    above: 0.5
+  condition:
+    condition: state
+    entity_id: switch.tumble_dryer
+    state: "on"
+  action:
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.tumble_dryer
+
+- alias: "Tumble dryer timer finished"
+# Tumble dryer timer finished
+# Turn off
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.tumble_dryer
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.tumble_dryer

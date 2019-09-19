@@ -6,5 +6,5 @@ harmony_activity:
   sequence:
     service: remote.turn_on
     data_template:
-      entity_id: remote.living_room
+      entity_id: remote.harmony_hub
       activity: "{{ activity }}"

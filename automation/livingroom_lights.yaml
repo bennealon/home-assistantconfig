@@ -23,10 +23,10 @@
   # cancel any pre-existing.
     - service: timer.cancel
       data_template:
-        entity_id: timer.living_room_motion
+        entity_id: timer.living_room_light
     - service: timer.start
       data:
-        entity_id: timer.living_room_motion
+        entity_id: timer.living_room_light
         duration: '00:10:00'
     - service: hue.hue_activate_scene
       data:
@@ -62,10 +62,10 @@
 # cancel any pre-existing.
     - service: timer.cancel
       data_template:
-        entity_id: timer.living_room_motion
+        entity_id: timer.living_room_light
     - service: timer.start
       data_template:
-        entity_id: timer.living_room_motion
+        entity_id: timer.living_room_light
         duration: >
           {% if now().hour >= 1 and now().hour < 6 %}
             00:03:00
@@ -84,7 +84,7 @@
     platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.living_room_motion
+      entity_id: timer.living_room_light
   action:
     - service: light.turn_off
       data:

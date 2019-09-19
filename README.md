@@ -76,3 +76,12 @@ If when restarting during step 5, you get similar error to this:
 https://community.home-assistant.io/t/getting-error-doing-job-ssl-handshake-failed-spam-in-log-any-ideas/63510
 
 Ensure that the dns entry does not have the port on the end.
+
+# TODO
+
+kitchen light on dimmed, when coming home after dark
+re-try heatmiser config.
+add bedroom light scenes
+add bedroom wakeup light.
+google tts when tumble finished.
+google home integration
