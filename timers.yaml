@@ -2,5 +2,7 @@ living_room_light:
   duration: '00:15:00'
 hallway_light:
   duration: '00:15:00'
+kitchen_light:
+  duration: '00:15:00'
 tumble_dryer:
   duration: '01:00:00'

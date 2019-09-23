@@ -10,6 +10,9 @@
     entity_id: binary_sensor.living_room_motion_sensor_motion
     to: "on"
   condition:
+    - condition: state
+      entity_id: input_boolean.livingroom_motion_enabled
+      state: 'on'
     - condition: numeric_state
       entity_id: sensor.living_room_motion_sensor_light_level
       below: 15
@@ -47,6 +50,9 @@
   condition:
     condition: and
     conditions:
+      - condition: state
+        entity_id: input_boolean.livingroom_motion_enabled
+        state: 'on'
       - condition: numeric_state
         entity_id: sensor.living_room_motion_sensor_light_level
         below: 15
@@ -77,14 +83,113 @@
         group_name: "Living room"
         scene_name: "Ambient lamps"
 
-- alias: "Living room motion timer finished"
+- alias: "Living room motion timer finished dimmed"
 # Light timer finished
-# Turn lights off with 30 seconds fade.
+# If during the dark hours and before the light_off_time, then revert to ambient dimmed
   trigger:
     platform: event
     event_type: timer.finished
     event_data:
       entity_id: timer.living_room_light
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions: 
+          # After Sunset (and before midnight)
+        - condition: sun
+          after: sunset
+          after_offset: "-00:30:00"
+          # TRUE if input_time.hour < 12 OR now.time < input_time.time
+        - condition: template
+          value_template: "{{ ( state_attr('input_datetime.livingroom_light_off_time', 'hour') | int < 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int ) }}"
+      - condition: and
+        conditions:
+          # Before sunrise (and after midnight)
+        - condition: sun
+          before: sunrise
+          before_offset: "+00:30:00"
+          # TRUE if input_time.hour < 12 AND now.time < input_time.time
+        - condition: template
+          value_template: "{{ ( state_attr('input_datetime.livingroom_light_off_time', 'hour') | int < 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int ) }}"
+  action:
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Living room"
+        scene_name: "Ambient lamps dimmed"
+
+- alias: "Living room motion timer finished off"
+# Light timer finished
+# If during the dark hours and after the light_off_time, then revert to ambient dimmed
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.living_room_light
+  condition:
+    condition: or
+    conditions:
+      - condition: and
+        conditions: 
+          # After Sunset (and before midnight)
+        - condition: sun
+          after: sunset
+          after_offset: "-00:30:00"
+          # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
+        - condition: template
+          value_template: "{{ ( state_attr('input_datetime.livingroom_light_off_time', 'hour') | int >= 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int ) }}"
+      - condition: and
+        conditions:
+          # Before sunrise (and after midnight)
+        - condition: sun
+          before: sunrise
+          before_offset: "+00:30:00"
+          # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
+        - condition: template
+          value_template: "{{ ( state_attr('input_datetime.livingroom_light_off_time', 'hour') | int >= 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int ) }}"
+      - condition: and
+        conditions: 
+        # any daylight hours
+        - condition: sun
+          after: sunrise
+          after_offset: "+00:30:00"
+        - condition: sun
+          before: sunset
+          before_offset: "-00:30:00"
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room
+        transition: 30
+
+- alias: "Living room dimmed sunset"
+# At 30 mins before sunset WHEN light timer is idle (noone is about)
+# Set light to ambient lamps dimmed
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  condition:
+    - condition: state
+      entity_id: timer.living_room_light
+      state: 'idle'
+  action:
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Living room"
+        scene_name: "Ambient lamps dimmed"
+
+- alias: "living room light off time"
+# At time specified
+# If the light timer is idle (noone is about)
+# Turn lights off with 30 seconds fade.
+  trigger:
+    platform: template
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+  condition:
+    - condition: state
+      entity_id: timer.living_room_light
+      state: 'idle'
   action:
     - service: light.turn_off
       data:

@@ -1,0 +1,47 @@
+- alias: "kitchen welcome home"
+# When household state changes to home
+# when the lights are off
+# after sunset OR before sunrise
+# Set light timer 5 minutes
+# Set kitchen to welcome homeambient daytime lights on
+  trigger:
+    platform: state
+    entity_id: group.household
+    to: "home"
+  condition:
+    - condition: state
+      entity_id: light.kitchen
+      state: 'off'
+    - condition: sun
+      after: sunset
+      after_offset: "-00:30:00"
+    - condition: sun
+      before: sunrise
+      before_offset: "+00:30:00"
+  action:
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.kitchen_light
+    - service: timer.start
+      data:
+        entity_id: timer.kitchen_light
+        duration: '00:05:00'
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Kitchen"
+        scene_name: "Welcome home"
+
+- alias: "Kitchen light timer finished"
+# kitchen lights finished
+# Turn off lights over 30 seconds.
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.kitchen_light
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.kitchen
+        transition: 30

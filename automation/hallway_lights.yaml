@@ -152,12 +152,16 @@
         transition: 30
 
 - alias: "hallway dimmed sunset"
-# At 30 mins before sunset
+# At 30 mins before sunset WHEN lights are off
 # Set light to ambient evening dimmed
   trigger:
     platform: sun
     event: sunset
     offset: "-00:30:00"
+  condition:
+    - condition: state
+      entity_id: light.hallway
+      state: 'off'
   action:
     - service: hue.hue_activate_scene
       data:
@@ -165,7 +169,7 @@
         scene_name: "Ambient evening dimmed"
 
 - alias: "hallway light off time"
-# At midnight
+# At time specified
 # Turn lights off with 30 seconds fade.
   trigger:
     platform: template

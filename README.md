@@ -79,7 +79,7 @@ Ensure that the dns entry does not have the port on the end.
 
 # TODO
 
-kitchen light on dimmed, when coming home after dark
+Living room lights on dimmed when no motion.
 re-try heatmiser config.
 add bedroom light scenes
 add bedroom wakeup light.

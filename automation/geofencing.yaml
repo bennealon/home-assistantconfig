@@ -82,7 +82,7 @@
       # all lights off, excluding hallway.
     - service: light.turn_off
       data:
-        entity_id: light.all_excluding_hallway
+        entity_id: light.all_excluding
       # notify IFTTT
     - service: ifttt.trigger
       data: 

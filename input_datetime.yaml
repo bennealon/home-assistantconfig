@@ -3,3 +3,9 @@ hallway_light_off_time:
   has_date: false
   has_time: true
   initial: 00:00:00
+
+livingroom_light_off_time:
+  name: Time Living room light turns off
+  has_date: false
+  has_time: true
+  initial: 00:00:00

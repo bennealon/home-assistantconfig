@@ -1,0 +1,4 @@
+livingroom_motion_enabled:
+  name: Living room motion enabled
+  initial: true
+  icon: mdi:motion-sensor

@@ -37,6 +37,10 @@ cards:
         type: picture-glance
         tap_action:
           action: toggle
+      - type: entities
+        show_header_toggle: false
+        entities:
+          - input_boolean.livingroom_motion_enabled
       - cards:
           - entity: light.living_room
             type: entity-button
@@ -45,10 +49,9 @@ cards:
             show_name: false
             tap_action:
               action: call-service
-              service: hue.hue_activate_scene
+              service: script.living_room_light_override
               service_data:
-                group_name: "Living room"
-                scene_name: "Ambient all"
+                scene_name: "Ambient all"                
           - entity: light.living_room
             type: entity-button
             name: "Ambient lamps"
@@ -56,9 +59,8 @@ cards:
             show_name: false
             tap_action:
               action: call-service
-              service: hue.hue_activate_scene
+              service: script.living_room_light_override
               service_data:
-                group_name: "Living room"
                 scene_name: "Ambient lamps"
           - entity: light.living_room
             type: entity-button
@@ -67,9 +69,8 @@ cards:
             show_name: false
             tap_action:
               action: call-service
-              service: hue.hue_activate_scene
+              service: script.living_room_light_override
               service_data:
-                group_name: "Living room"
                 scene_name: "Ambient wall"
         type: horizontal-stack
       - type: conditional
