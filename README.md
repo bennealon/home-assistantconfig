@@ -79,9 +79,8 @@ Ensure that the dns entry does not have the port on the end.
 
 # TODO
 
-Living room lights on dimmed when no motion.
-re-try heatmiser config.
 add bedroom light scenes
 add bedroom wakeup light.
 google tts when tumble finished.
 google home integration
+re-try heatmiser config - still broken

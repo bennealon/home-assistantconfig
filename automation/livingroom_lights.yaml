@@ -55,7 +55,7 @@
         state: 'on'
       - condition: numeric_state
         entity_id: sensor.living_room_motion_sensor_light_level
-        below: 15
+        below: 25
       - condition: or
         conditions:
         - condition: sun
