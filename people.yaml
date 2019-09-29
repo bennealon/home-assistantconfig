@@ -11,3 +11,6 @@
   device_trackers:
     - device_tracker.cathys_iphone
     - device_tracker.cathys_iphone_2
+
+- name: Guest
+  id: guest

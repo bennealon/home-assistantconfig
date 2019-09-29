@@ -2,3 +2,8 @@ livingroom_motion_enabled:
   name: Living room motion enabled
   initial: true
   icon: mdi:motion-sensor
+
+guest_mode_enabled:
+  name: Guest at home
+  initial: true
+  icon: mdi:home-export-outline

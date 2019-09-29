@@ -60,7 +60,7 @@
     entity_id: group.household
     from: "home"
   action:
-      # notify
+    # notify
     - service: script.notify_person
       data:
         device: "ios_bens_iphone"
@@ -85,10 +85,8 @@
         entity_id: light.all_excluding
       # notify IFTTT
     - service: ifttt.trigger
-      data: 
+      data:
         event: "heatmiser_away"
-        
-
 
 - alias: "First person arrived home"
   trigger:
@@ -111,3 +109,37 @@
     - service: ifttt.trigger
       data:
         event: "heatmiser_home"
+
+- alias: 'Setup Guest on Home Assistant start'
+# Used to ensure that guest is correctly set to away by default.
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.guest_mode_enabled
+
+- alias: "On Guest mode enabled"
+  # set guest to be at home
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode_enabled
+    to: "on"
+  action:
+    - service: python_script.set_state
+      data:
+        entity_id: person.guest
+        state: "home"
+
+- alias: "On Guest mode disabled"
+  # set guest to be away
+  trigger:
+    platform: state
+    entity_id: input_boolean.guest_mode_enabled
+    to: "off"
+  action:
+    - service: python_script.set_state
+      data:
+        entity_id: person.guest
+        state: "away"

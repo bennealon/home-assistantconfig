@@ -1,0 +1,9 @@
+set_state:
+  description: Change the state of an entity
+  fields:
+    entity_id:
+      description: The entity to have its state changed.
+      example: light.bedroom
+    state:
+      description: The state that will be set.
+      example: 'off'

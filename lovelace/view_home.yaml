@@ -2,6 +2,7 @@ background: var(--background-image)
 badges:
   - person.ben_nealon
   - person.cathy_nealon
+  - person.guest
 path: home
 title: Home
 icon: mdi:home
@@ -12,6 +13,7 @@ cards:
         name: Home Assistant Cast
         view: home
         icon: mdi:cast
+      - entity: input_boolean.guest_mode_enabled
   - type: "custom:atomic-calendar"
     title: Calendar
     showColors: true

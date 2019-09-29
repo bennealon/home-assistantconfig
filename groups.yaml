@@ -3,3 +3,4 @@ household:
   entities:
     - person.ben_nealon
     - person.cathy_nealon
+    - person.guest

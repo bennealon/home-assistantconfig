@@ -5,7 +5,7 @@ living_room_light_override:
   alias: Living room light override
   sequence:
     - service: input_boolean.turn_off
-      data_template:
+      data:
         entity_id: input_boolean.livingroom_motion_enabled
     - service: hue.hue_activate_scene
       data_template:
