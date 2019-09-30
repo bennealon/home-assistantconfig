@@ -79,6 +79,7 @@ Ensure that the dns entry does not have the port on the end.
 
 # TODO
 
+when kettle power drops, turn off after 30 seconds.
 add bedroom light scenes
 add bedroom wakeup light.
 google tts when tumble finished.
