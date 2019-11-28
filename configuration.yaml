@@ -43,9 +43,6 @@ discovery:
   ignore:
   enable:
 
-plex:
-  token: !secret plex_token
-
 remote:
   - platform: harmony
     name: Living room
