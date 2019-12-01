@@ -1,0 +1,63 @@
+background: var(--background-image)
+badges: []
+cards:
+  - type: entities
+    show_header_toggle: false
+    title: 'Temperature Sensors'
+    entities:
+      - entity: sensor.living_room_motion_sensor_temperature
+        name: Living room
+      - entity: sensor.hallway_motion_sensor_temperature
+        name: Hallway
+      - entity: water_heater.dhw_controller
+        name: Hot water
+  - type: thermostat
+    entity: climate.home
+  - type: "custom:simple-thermostat"
+    entity: climate.living_room
+    step_size: 0.5
+    modes:
+      # 'hvac_mode'
+      "off":
+        name: 'Off'
+        include: true
+      heat:
+        name: 'On'
+        include: true
+  - type: "custom:simple-thermostat"
+    entity: climate.bedroom
+    step_size: 0.5
+    modes:
+      # 'hvac_mode'
+      "off":
+        name: 'Off'
+        include: true
+      heat:
+        name: 'On'
+        include: true
+  - type: "custom:simple-thermostat"
+    entity: climate.georgia_room
+    step_size: 0.5
+    modes:
+      # 'hvac_mode'
+      "off":
+        name: 'Off'
+        include: true
+      heat:
+        name: 'On'
+        include: true
+  - type: "custom:simple-thermostat"
+    entity: climate.games_room
+    step_size: 0.5
+    modes:
+      # 'hvac_mode'
+      "off":
+        name: 'Off'
+        include: true
+      heat:
+        name: 'On'
+        include: true
+
+path: heating
+title: Heating
+icon: mdi:home-thermometer

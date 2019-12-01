@@ -1,11 +1,11 @@
 notify_person:
 # data:
-#   device: "ios_bens_iphone"
+#   device: "bens_iphone"
 #   title: "some title"
 #   message: "some message"
   alias: Notify Person
   sequence:
-    - service_template: notify.{{ device }}
+    - service_template: notify.mobile_app_{{ device }}
       data_template:
         title: "{{ title }}"
         message: "{{ message }}"

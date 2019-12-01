@@ -2,15 +2,15 @@
   id: bennealon
   user_id: e91d019a01cc4900bacea4b835010aeb
   device_trackers:
-    - device_tracker.ben_s_iphone
     - device_tracker.bens_iphone
+    - device_tracker.bens_iphone_router
 
 - name: Cathy
   id: cathynealon
   user_id: 48363e1512274bd380e3798a3b0ac7b7
   device_trackers:
-    - device_tracker.cathys_iphone_2
     - device_tracker.cathys_iphone
+    - device_tracker.cathys_iphone_router
 
 - name: Guest
   id: guest

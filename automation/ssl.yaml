@@ -12,7 +12,7 @@
     entity_id: sensor.ssl_cert_expiry
     below: 21
   action:
-    service: notify.ios_bens_iphone
+    service: notify.bens_iphone
     data:
       title: "SSL Certificate"
       message: "Expires in 21 days and has not been automatically renewed"

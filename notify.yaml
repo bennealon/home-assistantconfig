@@ -1,5 +1,5 @@
   - name: household
     platform: group
     services:
-      - service: ios_bens_iphone
-      - service: ios_cathys_iphone
+      - service: mobile_app_bens_iphone
+      - service: mobile_app_cathys_iphone

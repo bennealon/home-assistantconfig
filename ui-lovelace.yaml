@@ -22,5 +22,6 @@ cch:
 
 views:
   - !include /config/lovelace/view_home.yaml
-  - !include /config/lovelace/view_downstairs.yaml
-  - !include /config/lovelace/view_upstairs.yaml
+  - !include /config/lovelace/view_rooms.yaml
+  - !include /config/lovelace/view_heating.yaml
+  - !include /config/lovelace/view_remote_control.yaml

@@ -1,15 +1,8 @@
 background: var(--background-image)
 badges: []
 cards:
-  - type: entities
-    entities:
-      - type: cast
-        name: Home Assistant Cast
-        view: downstairs
-        icon: mdi:cast
   - entities:
       - sensor.hallway_motion_sensor_light_level
-      - sensor.hallway_motion_sensor_temperature
       - binary_sensor.hallway_motion_sensor_motion
       - light.hallway_lamp
     entity: light.hallway_lamp
@@ -20,13 +13,12 @@ cards:
     type: picture-glance
     tap_action:
       action: toggle
-  - cards:
+  - type: vertical-stack
+    cards:
       - entities:
           - sensor.living_room_motion_sensor_light_level
-          - sensor.living_room_motion_sensor_temperature
           - binary_sensor.living_room_motion_sensor_motion
           - media_player.living_room_speaker
-          - climate.living_room
           - remote.harmony_hub
           - light.living_room
         entity: light.living_room
@@ -37,11 +29,8 @@ cards:
         type: picture-glance
         tap_action:
           action: toggle
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - input_boolean.livingroom_motion_enabled
-      - cards:
+      - type: horizontal-stack
+        cards:
           - entity: light.living_room
             type: entity-button
             name: "Ambient all"
@@ -72,90 +61,15 @@ cards:
               service: script.living_room_light_override
               service_data:
                 scene_name: "Ambient wall"
-        type: horizontal-stack
       - type: conditional
         conditions:
-          - entity: media_player.shield
+          - entity: media_player.shield_2
             state_not: "off"
         card:
           type: media-control
-          entity: media_player.shield
-      - cards:
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "Off"
-            icon: mdi:power
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "PowerOff"
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "Freeview"
-            icon: mdi:television-box
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Freeview"
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "bluray"
-            icon: mdi:disc-player
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Bluray"
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "Netflix"
-            icon: mdi:netflix
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Netflix"
-        type: horizontal-stack
-      - cards:
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "Amazon Prime"
-            icon: mdi:amazon
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Amazon Prime"
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "plex"
-            icon: mdi:plex
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "Plex"
-          - entity: remote.harmony_hub
-            type: entity-button
-            name: "Shield"
-            icon: mdi:controller-classic
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.harmony_activity
-              service_data:
-                activity: "SHIELD TV"
-        type: horizontal-stack
-    type: vertical-stack
-  - cards:
+          entity: media_player.shield_2    
+  - type: vertical-stack
+    cards:
       - entities:
           - light.kitchen
           - media_player.kitchen
@@ -182,7 +96,7 @@ cards:
         card:
           type: media-control
           entity: media_player.kitchen_display
-    type: vertical-stack
+    
   - entities:
       - entity: switch.tumble_dryer
         icon: mdi:power-socket-uk
@@ -194,7 +108,21 @@ cards:
     type: picture-glance
     tap_action:
       action: toggle
+  - type: entity-button
+    entity: light.ben_bedside_lamp
+    hold_action:
+      action: more-info
+  - entities:
+      - entity: light.games_room
+    entity: light.games_room
+    state_image:
+      "on": /local/images/rooms/games_room_on.jpg
+      "off": /local/images/rooms/games_room_off.jpg
+    title: Games Room
+    type: picture-glance
+    tap_action:
+      action: toggle
 panel: false
-path: downstairs
-title: Downstairs
-icon: mdi:home-floor-g
+path: rooms
+title: Rooms
+icon: mdi:home

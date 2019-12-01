@@ -1,0 +1,104 @@
+background: var(--background-image)
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:        
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Off"
+            icon: mdi:power
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "PowerOff"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Freeview"
+            icon: mdi:television-box
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Freeview"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "bluray"
+            icon: mdi:disc-player
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Bluray"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Netflix"
+            icon: mdi:netflix
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Netflix"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Watch Smart TV"
+            icon: mdi:youtube-tv
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Watch Smart TV"
+      - type: horizontal-stack
+        cards:
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Amazon Prime"
+            icon: mdi:amazon
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Prime Video"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "plex"
+            icon: mdi:plex
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Plex"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Shield"
+            icon: mdi:controller-classic
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "SHIELD TV"
+          - entity: remote.harmony_hub
+            type: entity-button
+            name: "Music"
+            icon: mdi:music
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.harmony_activity
+              service_data:
+                activity: "Listen to Music"
+
+panel: false
+path: remote_control
+title: Remote Control
+icon: mdi:remote-tv

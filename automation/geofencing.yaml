@@ -11,7 +11,7 @@
   action:
     service: script.notify_person
     data:
-      device: "ios_bens_iphone"
+      device: "bens_iphone"
       title: "Work"
       message: "Cathy's leaving"
 
@@ -24,7 +24,7 @@
   action:
     service: script.notify_person
     data:
-      device: "ios_cathys_iphone"
+      device: "cathys_iphone"
       title: "Work"
       message: "Ben's leaving"
 
@@ -37,7 +37,7 @@
   action:
     service: script.notify_person
     data:
-      device: "ios_bens_iphone"
+      device: "bens_iphone"
       title: "Home"
       message: "Cathy arrived"
 
@@ -50,7 +50,7 @@
   action:
     service: script.notify_person
     data:
-      device: "ios_cathys_iphone"
+      device: "cathys_iphone"
       title: "Home"
       message: "Ben arrived"
 
@@ -63,7 +63,7 @@
     # notify
     - service: script.notify_person
       data:
-        device: "ios_bens_iphone"
+        device: "bens_iphone"
         title: "Home"
         message: "Everyone's left"
       # turn off all switches, not specifying an entity does all
@@ -97,7 +97,7 @@
     # notify
     - service: script.notify_person
       data:
-        device: "ios_bens_iphone"
+        device: "bens_iphone"
         title: "Home"
         message: "First person arrived"
     # reset heating out of away mode
