@@ -32,7 +32,8 @@ cards:
         entity: water_heater.dhw_controller
         icon: mdi:thermometer-plus
         color_type: icon
-        confirmation: Hot Water Boosted for 1 Hour
+        confirmation: 
+          text: Hot Water Boosted for 1 Hour
         name: >
           [[[
             var temperature = states['water_heater.dhw_controller'].attributes.current_temperature;

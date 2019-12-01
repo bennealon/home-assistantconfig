@@ -1,9 +1,9 @@
 # Custom Card Origin
 
-## button-card.js v2.0.5
+## button-card.js v3.0.0
 
 `https://github.com/custom-cards/button-card`
-sha: 0c6cd9aaae6cc9e4a9d14de0834b81bd67cc29c6
+sha: 23fbdeaf6184cdd4fa60313dfa8524d10ef7e479
 
 ## compact-custom-header.js v1.3.6
 
