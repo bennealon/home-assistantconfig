@@ -1,4 +1,4 @@
-- alias: "Tumble dryer finished"
+- alias: "Tumble dryer finished, notifying and starting timer"
   trigger:
     platform: numeric_state
     entity_id: switch.tumble_dryer
@@ -38,7 +38,7 @@
       data_template:
         entity_id: timer.tumble_dryer
 
-- alias: "Tumble dryer timer finished"
+- alias: "Tumble dryer timer finished, turning off"
 # Tumble dryer timer finished
 # Turn off
   trigger:
@@ -50,3 +50,20 @@
     - service: switch.turn_off
       data:
         entity_id: switch.tumble_dryer
+
+- alias: "Kettle finished, turning off"
+  trigger:
+    platform: numeric_state
+    entity_id: switch.kettle
+    value_template: "{{ state_attr('switch.kettle', 'current_a') }}"
+    below: 0.5
+    for: "00:00:10"
+  condition:
+    condition: state
+    entity_id: switch.kettle
+    state: "on"
+  action:
+  # cancel any pre-existing.
+    - service: switch.turn_off
+      data:
+        entity_id: switch.kettle
