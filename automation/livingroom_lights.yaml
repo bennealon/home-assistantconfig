@@ -163,13 +163,16 @@
         transition: 30
 
 - alias: "Living room dimmed sunset"
-  # At 30 mins before sunset WHEN light timer is idle (noone is about)
+  # At 30 mins before sunset WHEN light timer is idle (noone is about), and motion is enabled (otherwise dont override)
   # Set light to ambient lamps dimmed
   trigger:
     platform: sun
     event: sunset
     offset: "-00:30:00"
   condition:
+    - condition: state
+      entity_id: input_boolean.livingroom_motion_enabled
+      state: "on"
     - condition: state
       entity_id: timer.living_room_light
       state: "idle"
