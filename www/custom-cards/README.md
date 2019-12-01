@@ -5,10 +5,10 @@
 `https://github.com/custom-cards/button-card`
 sha: 23fbdeaf6184cdd4fa60313dfa8524d10ef7e479
 
-## compact-custom-header.js v1.3.6
+## compact-custom-header.js v1.4.9
 
 `https://github.com/maykar/compact-custom-header/`
-sha: 1feac957e9079564cc2fac9abf9574ba2331fd63
+sha: 1d69c316673892b84061d020e90d822c8cf0d76d
 
 https://maykar.github.io/compact-custom-header/Main-Config-Options/
 

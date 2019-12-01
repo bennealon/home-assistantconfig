@@ -4,7 +4,7 @@ title: Home
 resources:
   - url: /local/custom-cards/button-card.js?v=3.0.0
     type: module
-  - url: /local/custom-cards/compact-custom-header.js?v=1.3.6
+  - url: /local/custom-cards/compact-custom-header.js?v=1.4.9
     type: module
   - url: /local/custom-cards/simple-thermostat.js?v=0.26.0
     type: module
