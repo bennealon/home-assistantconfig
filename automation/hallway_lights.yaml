@@ -1,13 +1,13 @@
 - alias: "hallway motion daytime"
-# Detects motion when
-# light level below 15lux
-# AND
-# During the daytime
-# Set light timer 10 mins
-# Set ambient daytime lights on
+  # Detects motion when
+  # light level below 15lux
+  # AND
+  # During the daytime
+  # Set light timer 10 mins
+  # Set ambient daytime lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.hallway_motion_sensor_motion
+    entity_id: binary_sensor.hallway_motion_sensor
     to: "on"
   condition:
     - condition: numeric_state
@@ -20,29 +20,29 @@
       before: sunset
       before_offset: "-00:30:00"
   action:
-  # cancel any pre-existing.
+    # cancel any pre-existing.
     - service: timer.cancel
       data_template:
         entity_id: timer.hallway_light
     - service: timer.start
       data:
         entity_id: timer.hallway_light
-        duration: '00:01:00'
+        duration: "00:01:00"
     - service: hue.hue_activate_scene
       data:
         group_name: "Hallway"
         scene_name: "Ambient daytime"
 
 - alias: "hallway motion evening"
-# Detects motion when
-# light level below 15lux
-# AND
-# During the evening (need to use OR here for the two ends of the day)
-# Set light timer 1 mins
-# Set ambient evening lights on
+  # Detects motion when
+  # light level below 15lux
+  # AND
+  # During the evening (need to use OR here for the two ends of the day)
+  # Set light timer 1 mins
+  # Set ambient evening lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.hallway_motion_sensor_motion
+    entity_id: binary_sensor.hallway_motion_sensor
     to: "on"
   condition:
     condition: and
@@ -52,29 +52,29 @@
         below: 25
       - condition: or
         conditions:
-        - condition: sun
-          after: sunset
-          after_offset: "-00:30:00"
-        - condition: sun
-          before: sunrise
-          before_offset: "+00:30:00"
+          - condition: sun
+            after: sunset
+            after_offset: "-00:30:00"
+          - condition: sun
+            before: sunrise
+            before_offset: "+00:30:00"
   action:
-# cancel any pre-existing.
+    # cancel any pre-existing.
     - service: timer.cancel
       data_template:
         entity_id: timer.hallway_light
     - service: timer.start
       data_template:
         entity_id: timer.hallway_light
-        duration: '00:05:00'       
+        duration: "00:05:00"
     - service: hue.hue_activate_scene
       data:
         group_name: "Hallway"
         scene_name: "Ambient evening"
 
 - alias: "Hallway motion timer finished dimmed"
-# Light timer finished
-# If during the dark hours and before the light_off_time, then revert to ambient dimmed
+  # Light timer finished
+  # If during the dark hours and before the light_off_time, then revert to ambient dimmed
   trigger:
     platform: event
     event_type: timer.finished
@@ -84,23 +84,23 @@
     condition: or
     conditions:
       - condition: and
-        conditions: 
+        conditions:
           # After Sunset (and before midnight)
-        - condition: sun
-          after: sunset
-          after_offset: "-00:30:00"
-          # TRUE if input_time.hour < 12 OR now.time < input_time.time
-        - condition: template
-          value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int < 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
+          - condition: sun
+            after: sunset
+            after_offset: "-00:30:00"
+            # TRUE if input_time.hour < 12 OR now.time < input_time.time
+          - condition: template
+            value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int < 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
       - condition: and
         conditions:
           # Before sunrise (and after midnight)
-        - condition: sun
-          before: sunrise
-          before_offset: "+00:30:00"
-          # TRUE if input_time.hour < 12 AND now.time < input_time.time
-        - condition: template
-          value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int < 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
+          - condition: sun
+            before: sunrise
+            before_offset: "+00:30:00"
+            # TRUE if input_time.hour < 12 AND now.time < input_time.time
+          - condition: template
+            value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int < 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
   action:
     - service: hue.hue_activate_scene
       data:
@@ -108,8 +108,8 @@
         scene_name: "Ambient evening dimmed"
 
 - alias: "Hallway motion timer finished off"
-# Light timer finished
-# If during the dark hours and after the light_off_time, then revert to ambient dimmed
+  # Light timer finished
+  # If during the dark hours and after the light_off_time, then revert to ambient dimmed
   trigger:
     platform: event
     event_type: timer.finished
@@ -119,32 +119,32 @@
     condition: or
     conditions:
       - condition: and
-        conditions: 
+        conditions:
           # After Sunset (and before midnight)
-        - condition: sun
-          after: sunset
-          after_offset: "-00:30:00"
-          # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
-        - condition: template
-          value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int >= 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
+          - condition: sun
+            after: sunset
+            after_offset: "-00:30:00"
+            # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
+          - condition: template
+            value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int >= 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
       - condition: and
         conditions:
           # Before sunrise (and after midnight)
-        - condition: sun
-          before: sunrise
-          before_offset: "+00:30:00"
-          # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
-        - condition: template
-          value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int >= 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
+          - condition: sun
+            before: sunrise
+            before_offset: "+00:30:00"
+            # TRUE if input_time.hour >= 12 AND now.time >= input_time.time
+          - condition: template
+            value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int >= 12 ) or ( (now().hour*60*60 + now().minute*60 + now().second) >= state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
       - condition: and
-        conditions: 
-        # any daylight hours
-        - condition: sun
-          after: sunrise
-          after_offset: "+00:30:00"
-        - condition: sun
-          before: sunset
-          before_offset: "-00:30:00"
+        conditions:
+          # any daylight hours
+          - condition: sun
+            after: sunrise
+            after_offset: "+00:30:00"
+          - condition: sun
+            before: sunset
+            before_offset: "-00:30:00"
   action:
     - service: light.turn_off
       data:
@@ -152,8 +152,8 @@
         transition: 30
 
 - alias: "hallway dimmed sunset"
-# At 30 mins before sunset WHEN lights are off
-# Set light to ambient evening dimmed
+  # At 30 mins before sunset WHEN lights are off
+  # Set light to ambient evening dimmed
   trigger:
     platform: sun
     event: sunset
@@ -161,7 +161,7 @@
   condition:
     - condition: state
       entity_id: light.hallway
-      state: 'off'
+      state: "off"
   action:
     - service: hue.hue_activate_scene
       data:
@@ -169,8 +169,8 @@
         scene_name: "Ambient evening dimmed"
 
 - alias: "hallway light off time"
-# At time specified
-# Turn lights off with 30 seconds fade.
+  # At time specified
+  # Turn lights off with 30 seconds fade.
   trigger:
     platform: template
     value_template: "{{ states('sensor.time') == (state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"

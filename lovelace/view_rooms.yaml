@@ -3,7 +3,7 @@ badges: []
 cards:
   - entities:
       - sensor.hallway_motion_sensor_light_level
-      - binary_sensor.hallway_motion_sensor_motion
+      - binary_sensor.hallway_motion_sensor
       - light.hallway_lamp
     entity: light.hallway_lamp
     state_image:
@@ -17,7 +17,7 @@ cards:
     cards:
       - entities:
           - sensor.living_room_motion_sensor_light_level
-          - binary_sensor.living_room_motion_sensor_motion
+          - binary_sensor.living_room_motion_sensor
           - media_player.living_room_speaker
           - remote.harmony_hub
           - light.living_room
@@ -40,7 +40,7 @@ cards:
               action: call-service
               service: script.living_room_light_override
               service_data:
-                scene_name: "Ambient all"                
+                scene_name: "Ambient all"
           - entity: light.living_room
             type: entity-button
             name: "Ambient lamps"
@@ -67,7 +67,7 @@ cards:
             state_not: "off"
         card:
           type: media-control
-          entity: media_player.shield_2    
+          entity: media_player.shield_2
   - type: vertical-stack
     cards:
       - entities:
@@ -75,7 +75,7 @@ cards:
             icon: mdi:power-socket-uk
           - light.kitchen
           - media_player.kitchen
-          - media_player.kitchen_display          
+          - media_player.kitchen_display
         entity: light.kitchen
         state_image:
           "on": /local/images/rooms/kitchen_on.jpg
@@ -98,7 +98,7 @@ cards:
         card:
           type: media-control
           entity: media_player.kitchen_display
-    
+
   - entities:
       - entity: switch.tumble_dryer
         icon: mdi:power-socket-uk

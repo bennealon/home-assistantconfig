@@ -18,6 +18,8 @@
 !www/
 !www/**
 !lovelace
+!custom_components/
+!custom_components/**
 
 # Ignore system-generated files
 .DS_Store

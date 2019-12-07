@@ -7,7 +7,7 @@
   # Set wall lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.living_room_motion_sensor_motion
+    entity_id: binary_sensor.living_room_motion_sensor
     to: "on"
   condition:
     - condition: state
@@ -45,7 +45,7 @@
   # Set ambient lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.living_room_motion_sensor_motion
+    entity_id: binary_sensor.living_room_motion_sensor
     to: "on"
   condition:
     condition: and

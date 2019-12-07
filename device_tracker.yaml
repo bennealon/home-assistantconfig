@@ -6,6 +6,8 @@
     track_new_devices: false
     hide_if_away: false
 
+- platform: huesensor
+
 # - platform: tile
 #   username: !secret tile_username
 #   password: !secret tile_password
