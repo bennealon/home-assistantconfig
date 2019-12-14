@@ -1,4 +1,4 @@
-- alias: "Outside Christmas ligths on at sunset"
+- alias: "Outside Christmas lights on at sunset"
   # At 30 mins before sunset
   # turn christmas lights on.
   trigger:
@@ -10,7 +10,7 @@
       data:
         entity_id: group.switches_outdoor_christmas_lights
 
-- alias: "Christmas tree ligths on at sunset when someone's home"
+- alias: "Christmas tree lights on at sunset when someone's home"
   # At 30 mins before sunset
   # If someone is home.
   # turn christas lights on.
@@ -27,11 +27,12 @@
       data:
         entity_id: group.switches_christmas_tree_lights
 
-- alias: "All christmas ligths off at specified time"
+- alias: "All christmas lights off at specified time"
   # turn christas lights off at specified time.
   trigger:
-    platform: time
-    at: input_datetime.christmas_light_off_time
+    platform: template
+    value_template: "{{ states('sensor.time') == (state_attr('input_datetime.christmas_light_off_time', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+
   action:
     - service: switch.turn_off
       data:

@@ -87,6 +87,10 @@
     - service: ifttt.trigger
       data:
         event: "heatmiser_away"
+      # reset the livingroom motion sensor enabled flag: so that the lights turn off on their own.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.livingroom_motion_enabled
 
 - alias: "First person arrived home"
   trigger:
