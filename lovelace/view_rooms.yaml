@@ -4,6 +4,8 @@ cards:
   - entities:
       - sensor.hallway_motion_sensor_light_level
       - binary_sensor.hallway_motion_sensor
+      - entity: switch.hallway_smart_plug
+        icon: mdi:power-socket-uk
       - light.hallway_lamp
     entity: light.hallway_lamp
     state_image:
@@ -20,6 +22,8 @@ cards:
           - binary_sensor.living_room_motion_sensor
           - media_player.living_room_speaker
           - remote.harmony_hub
+          - entity: switch.living_room_smart_plug
+            icon: mdi:power-socket-uk
           - light.living_room
         entity: light.living_room
         state_image:
@@ -100,6 +104,8 @@ cards:
           entity: media_player.kitchen_display
 
   - entities:
+      - entity: switch.garage_smart_plug
+        icon: mdi:power-socket-uk
       - entity: switch.tumble_dryer
         icon: mdi:power-socket-uk
     entity: switch.tumble_dryer
