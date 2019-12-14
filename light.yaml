@@ -4,3 +4,8 @@
     - light.bedroom
     - light.games_room
     - light.kitchen
+
+- platform: hyperion
+  name: Ambilight
+  host: 192.168.0.8
+  port: 19444

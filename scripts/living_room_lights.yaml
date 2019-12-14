@@ -11,3 +11,24 @@ living_room_light_override:
       data_template:
         group_name: "Living room"
         scene_name: "{{ scene_name }}"
+
+hyperion_ambilight_on:
+  alias: Hyperion Ambilight ON
+  sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.livingroom_motion_enabled
+    - service: light.turn_on
+      data:
+        entity_id: light.ambilight
+        effect: HDMI
+
+hyperion_ambilight_off:
+  alias: Hyperion Ambilight OFF
+  sequence:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.livingroom_motion_enabled
+    - service: light.turn_off
+      data:
+        entity_id: light.ambilight

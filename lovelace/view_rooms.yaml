@@ -24,6 +24,8 @@ cards:
           - remote.harmony_hub
           - entity: switch.living_room_smart_plug
             icon: mdi:power-socket-uk
+          - entity: light.ambilight
+            icon: mdi:lava-lamp
           - light.living_room
         entity: light.living_room
         state_image:
@@ -65,6 +67,24 @@ cards:
               service: script.living_room_light_override
               service_data:
                 scene_name: "Ambient wall"
+      - type: horizontal-stack
+        cards:
+          - entity: light.ambilight
+            type: entity-button
+            name: "Ambilight ON"
+            icon: mdi:lava-lamp
+            show_name: true
+            tap_action:
+              action: call-service
+              service: script.hyperion_ambilight_on
+          - entity: light.ambilight
+            type: entity-button
+            name: "Ambilight OFF"
+            icon: mdi:lava-lamp
+            show_name: true
+            tap_action:
+              action: call-service
+              service: script.hyperion_ambilight_off
       - type: conditional
         conditions:
           - entity: media_player.shield_2
