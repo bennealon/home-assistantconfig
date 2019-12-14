@@ -1,0 +1,66 @@
+- alias: "Outside Christmas ligths on at sunset"
+  # At 30 mins before sunset
+  # turn christmas lights on.
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: group.switches_outdoor_christmas_lights
+
+- alias: "Christmas tree ligths on at sunset when someone's home"
+  # At 30 mins before sunset
+  # If someone is home.
+  # turn christas lights on.
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: "home"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: group.switches_christmas_tree_lights
+
+- alias: "All christmas ligths off at specified time"
+  # turn christas lights off at specified time.
+  trigger:
+    platform: time
+    at: input_datetime.christmas_light_off_time
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: group.switches_outdoor_christmas_lights
+    - service: switch.turn_off
+      data:
+        entity_id: group.switches_christmas_tree_lights
+
+- alias: "Last person leaves home, turn the Christmas tree lights off"
+  trigger:
+    platform: state
+    entity_id: group.household
+    from: "home"
+  action:
+    # turn off the christmas tree lights, as we don't trust them apparently??
+    - service: switch.turn_off
+      data:
+        entity_id: group.switches_christmas_tree_lights
+
+- alias: "First person arrives home after sunset, turn the Christmas tree lights on"
+  trigger:
+    platform: state
+    entity_id: group.household
+    to: "home"
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-00:30:00"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: group.switches_christmas_tree_lights

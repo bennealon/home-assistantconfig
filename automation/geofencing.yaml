@@ -69,7 +69,7 @@
       # turn off all switches, not specifying an entity does all
     - service: switch.turn_off
       data:
-        entity_id: all
+        entity_id: group.switches_geofencing
       # turn off TV
     - service: remote.turn_off
       data:
