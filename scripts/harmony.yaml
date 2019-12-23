@@ -1,6 +1,5 @@
 # data:
 #   activity: 'Freeview'
-
 harmony_activity:
   alias: Harmony Activity
   sequence:
@@ -8,3 +7,15 @@ harmony_activity:
     data_template:
       entity_id: remote.harmony_hub
       activity: "{{ activity }}"
+
+# data:
+#   device_id: '64933987'
+#   command: 'Mute'
+harmony_command:
+  alias: Harmony Command
+  sequence:
+    service: remote.send_command
+    data_template:
+      entity_id: remote.harmony_hub
+      device: "{{ device_id }}"
+      command: "{{ command }}"

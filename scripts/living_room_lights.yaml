@@ -15,6 +15,10 @@ living_room_light_override:
 hyperion_ambilight_on:
   alias: Hyperion Ambilight ON
   sequence:
+    - service: script.harmony_command
+      data:
+        device_id: "64933987"
+        command: "HdmiOutBoth"
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.livingroom_motion_enabled
@@ -26,6 +30,10 @@ hyperion_ambilight_on:
 hyperion_ambilight_off:
   alias: Hyperion Ambilight OFF
   sequence:
+    - service: script.harmony_command
+      data:
+        device_id: "64933987"
+        command: "HdmiOutMain"
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.livingroom_motion_enabled
