@@ -38,7 +38,7 @@ cards:
         name: "On"
         include: true
   - type: "custom:simple-thermostat"
-    entity: climate.georgia_room
+    entity: climate.georgias_room
     step_size: 0.5
     modes:
       # 'hvac_mode'
@@ -49,7 +49,7 @@ cards:
         name: "On"
         include: true
   - type: "custom:simple-thermostat"
-    entity: climate.back_bedroom
+    entity: climate.rosies_room
     step_size: 0.5
     modes:
       # 'hvac_mode'

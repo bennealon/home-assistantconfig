@@ -50,12 +50,12 @@ cards:
         hold_action:
           action: more-info
       - type: entity-button
-        entity: climate.georgia_room
-        name: Georgia Nap
+        entity: climate.rosies_room
+        name: Rosie Nap
         icon: mdi:sleep
         tap_action:
           action: call-service
-          service: script.georgia_room_temperature
+          service: script.rosies_room_temperature
           service_data:
             temperature: 18
             duration_hour: 2
@@ -71,6 +71,4 @@ cards:
         titleColor: orange
       - entity: calendar.meals
         titleColor: purple
-      - entity: calendar.ben_trainerroad_calendar
-        titleColor: red
   

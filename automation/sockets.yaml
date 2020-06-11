@@ -52,6 +52,7 @@
         entity_id: switch.tumble_dryer
 
 - alias: "Kettle finished, turning off"
+  initial_state: false
   trigger:
     platform: numeric_state
     entity_id: switch.kettle

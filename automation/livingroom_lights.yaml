@@ -210,12 +210,3 @@
     - service: timer.cancel
       data_template:
         entity_id: timer.living_room_light
-
-- alias: "On living room TV turning off, disable ambilight"
-  # When the TV gets turned off, turn off hyperion ambilight
-  trigger:
-    platform: state
-    entity_id: remote.harmony_hub
-    to: "off"
-  action:
-    - service: script.hyperion_ambilight_off

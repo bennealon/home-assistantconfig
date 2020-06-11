@@ -11,13 +11,13 @@ switches_geofencing:
     - switch.kettle
     - switch.tumble_dryer
 
-switches_christmas_tree_lights:
-  name: Christmas Tree Lights
-  entities:
-    - switch.hallway_smart_plug
-    - switch.living_room_smart_plug
+# switches_christmas_tree_lights:
+#   name: Christmas Tree Lights
+#   entities:
+#     - switch.hallway_smart_plug
+#     - switch.living_room_smart_plug
 
-switches_outdoor_christmas_lights:
-  name: Outdoor Christmas Lights
-  entities:
-    - switch.garage_smart_plug
+# switches_outdoor_christmas_lights:
+#   name: Outdoor Christmas Lights
+#   entities:
+#     - switch.garage_smart_plug
