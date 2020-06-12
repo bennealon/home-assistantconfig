@@ -2,8 +2,8 @@ background: var(--background-image)
 badges: []
 cards:
   - entities:
-      - sensor.hallway_motion_sensor_light_level
-      - binary_sensor.hallway_motion_sensor
+      - sensor.hallway_sensor_light_level
+      - binary_sensor.hallway_sensor_motion
       # - entity: switch.hallway_smart_plug
       #   icon: mdi:power-socket-uk
       - light.hallway_lamp
@@ -18,9 +18,9 @@ cards:
   - type: vertical-stack
     cards:
       - entities:
-          - sensor.living_room_motion_sensor_light_level
-          - binary_sensor.living_room_motion_sensor
-          - remote.harmony_hub
+          - sensor.living_room_sensor_light_level
+          - binary_sensor.living_room_sensor_motion
+          - remote.living_room
           # - entity: switch.living_room_smart_plug
           #   icon: mdi:power-socket-uk
           - light.living_room

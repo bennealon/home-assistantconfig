@@ -45,19 +45,24 @@ discovery:
   ignore:
   enable:
 
+#blank host for auto discovery
 remote:
   - platform: harmony
     name: Living room
+    host: !secret harmony_host
     activity: Freeview
+
+hue:
+  bridges:
+    - host: !secret hue_host
+      allow_unreachable: true
+      allow_hue_groups: true
 
 python_script:
 
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_client_secret
-
-binary_sensor:
-  - platform: huesensor
 
 input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml

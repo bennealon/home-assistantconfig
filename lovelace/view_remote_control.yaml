@@ -5,7 +5,7 @@ cards:
     cards:
       - type: horizontal-stack
         cards:        
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "Off"
             icon: mdi:power
@@ -15,7 +15,7 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "PowerOff"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "Freeview"
             icon: mdi:television-box
@@ -25,7 +25,7 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "Freeview"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "bluray"
             icon: mdi:disc-player
@@ -35,7 +35,7 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "Bluray"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "Netflix"
             icon: mdi:netflix
@@ -45,7 +45,7 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "Netflix"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "Watch Smart TV"
             icon: mdi:youtube-tv
@@ -57,7 +57,7 @@ cards:
                 activity: "Watch Smart TV"
       - type: horizontal-stack
         cards:
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "Amazon Prime"
             icon: mdi:amazon
@@ -67,7 +67,7 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "Prime Video"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
             name: "plex"
             icon: mdi:plex
@@ -77,17 +77,17 @@ cards:
               service: script.harmony_activity
               service_data:
                 activity: "Plex"
-          - entity: remote.harmony_hub
+          - entity: remote.living_room
             type: entity-button
-            name: "Shield"
-            icon: mdi:controller-classic
+            name: "Apple TV"
+            icon: mdi:apple
             show_name: false
             tap_action:
               action: call-service
               service: script.harmony_activity
               service_data:
-                activity: "SHIELD TV"
-          - entity: remote.harmony_hub
+                activity: "Watch Apple TV"
+          - entity: remote.living_room
             type: entity-button
             name: "Music"
             icon: mdi:music

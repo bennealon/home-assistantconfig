@@ -7,11 +7,11 @@
   # Set ambient daytime lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.hallway_motion_sensor
+    entity_id: binary_sensor.hallway_sensor_motion
     to: "on"
   condition:
     - condition: numeric_state
-      entity_id: sensor.hallway_motion_sensor_light_level
+      entity_id: sensor.hallway_sensor_light_level
       below: 25
     - condition: sun
       after: sunrise
@@ -42,13 +42,13 @@
   # Set ambient evening lights on
   trigger:
     platform: state
-    entity_id: binary_sensor.hallway_motion_sensor
+    entity_id: binary_sensor.hallway_sensor_motion
     to: "on"
   condition:
     condition: and
     conditions:
       - condition: numeric_state
-        entity_id: sensor.hallway_motion_sensor_light_level
+        entity_id: sensor.hallway_sensor_light_level
         below: 25
       - condition: or
         conditions:

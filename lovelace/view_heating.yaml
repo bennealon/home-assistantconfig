@@ -7,9 +7,9 @@ cards:
     show_header_toggle: false
     title: "Temperature Sensors"
     entities:
-      - entity: sensor.living_room_motion_sensor_temperature
+      - entity: sensor.living_room_sensor_temperature
         name: Living room
-      - entity: sensor.hallway_motion_sensor_temperature
+      - entity: sensor.hallway_sensor_temperature
         name: Hallway
       - entity: water_heater.dhw_controller
         name: Hot water

@@ -4,9 +4,6 @@
   password: !secret asuswrt_password
   new_device_defaults:
     track_new_devices: false
-    hide_if_away: false
-
-- platform: huesensor
 
 # - platform: tile
 #   username: !secret tile_username
