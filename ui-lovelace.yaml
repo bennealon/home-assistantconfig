@@ -2,21 +2,17 @@ button_card_templates: !include /config/lovelace/templates.yaml
 
 title: Home
 resources:
-  - url: /local/custom-cards/button-card.js?v=3.0.0
+  - url: /local/custom-cards/button-card.js?v=3.3.6
     type: module
-  - url: /local/custom-cards/compact-custom-header.js?v=1.4.9
+  - url: /local/custom-cards/custom-header.js?v=1.5.8
     type: module
-  - url: /local/custom-cards/simple-thermostat.js?v=0.31.0
+  - url: /local/custom-cards/simple-thermostat.js?v=0.35.0
     type: module
   - url: /local/custom-cards/atomic_calendar.js?v=0.8.9
     type: module
 
-cch:
-  options: clock
-  compact_header: true
-  clock_format: 24
-  clock_date: true
-  swipe: true
+custom_header:
+  compact_mode: true
 
 views:
   - !include /config/lovelace/view_home.yaml

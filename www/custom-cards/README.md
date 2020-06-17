@@ -1,25 +1,25 @@
 # Custom Card Origin
 
-## button-card.js v3.0.0
+## button-card.js v3.3.6
 
 `https://github.com/custom-cards/button-card`
-sha: 23fbdeaf6184cdd4fa60313dfa8524d10ef7e479
+sha: d447819d36ae83259443b8629cf5a4b36c8f5399
 
-## compact-custom-header.js v1.4.9
+## custom-header.js v1.5.8
 
-`https://github.com/maykar/compact-custom-header/`
-sha: 1d69c316673892b84061d020e90d822c8cf0d76d
+`https://github.com/maykar/custom-header`
+sha: 5a6d4a92a1b1939d73e6ed14359fae79c977c9b3
 
-https://maykar.github.io/compact-custom-header/Main-Config-Options/
+https://maykar.github.io/custom-header/#intro/intro
 
-## simple-thermostat.js v0.31.0
+## simple-thermostat.js v0.35.0
 
 `https://github.com/nervetattoo/simple-thermostat`
-cb0c520dec36298dc1055a19cb04e00cafb00777
+9f3474ec052ab7f994993504be84bdae309f84f4
 
-## simple-weather-card.js v0.5.0
+## simple-weather-card.js v0.8.0
 
-sha: 22733c9b7c20406ce12036d32d6d7db3b28318f3
+sha: 422e8655e78a1a7da0ab4e510f0657bec4af3ea5
 `https://github.com/kalkih/simple-weather-card`
 
 ## Atomic Calendar v0.8.9
