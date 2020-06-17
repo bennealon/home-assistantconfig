@@ -1,5 +1,5 @@
 # - platform: heatmiser
-#   host: 192.168.0.59
+#   host: !secret heatmiser_host
 #   port: 4242
 #   tstats:
 #     - id: 1
