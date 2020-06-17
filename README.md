@@ -27,8 +27,6 @@ Samba Share
 
 Air Sonos
 
-
-
 Once the share is active, we can access the configuration directory and checkout our code.
 
 Navigate to the shared directory on the pi: http://<ip>/config
@@ -49,6 +47,10 @@ git checkout master -f
 git status
 
 rm -rf <file name>
+
+git commit -am 'my message'
+
+git push origin master
 ```
 
 Restart home assistant.
