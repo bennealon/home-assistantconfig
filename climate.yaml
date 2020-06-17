@@ -1,10 +1,8 @@
 # - platform: heatmiser
-#   ipaddress: 192.168.0.59
+#   host: 192.168.0.59
 #   port: 4242
 #   tstats:
-#     1:
-#       id: 1
+#     - id: 1
 #       name: Dining Room Underfloor
-#     2:
-#       id: 2
+#     - id: 2
 #       name: Kitchen Underfloor

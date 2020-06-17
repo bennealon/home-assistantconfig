@@ -2,30 +2,19 @@
 
 Home Assistant
 
-Secure the raspberry Pi, unless otherwise done.
+## Secure the raspberry Pi.
 
-https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-debian-9
-Copy over ssh key if you already have one, best way is to use `ssh-copy-id` method
+https://www.home-assistant.io/docs/configuration/securing/
 
-// Below is pointless now as cannot do the username change remotely.
-Change the default username on the Pi to something else, to do this over SSH, need to change ssh_config to allow root login, then follow this guide:
-
-```
-sudo vim /etc/ssh/sshd_config
-PermitRootLogin yes
-sudo systemctl restart sshd
-```
-
-Then follow this guide to change the username:
+Change the default username on the Pi to something else, best to do this directly on the Pi itself, then disable auto-login from within the config:
 https://thepihut.com/blogs/raspberry-pi-tutorials/how-to-change-the-default-account-username-and-password
 note: i had trouble doing this remotely, as the pi by default auto-logs in as the default user `pi`, which means processes are still running under this user.
-was much easier to do this without SSH on the pi itself, but still needed to disable auto-login from within the config.
 
-install Home Assistant on raspbian using this guide:
-https://www.home-assistant.io/docs/installation/raspberry-pi/
+Setup SSH and disable username/password login, Copy over ssh key if you already have one, best way is to use `ssh-copy-id` method
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-debian-9
 
-set a password for homeassistant user:
-`sudo passwd homeassistant`
+The below portion of this guide is out of date, installation has now changed and i am about to try a reinstall of hass.os
+
 
 Once installed, add a system service using this guide:
 https://www.home-assistant.io/docs/autostart/systemd/
