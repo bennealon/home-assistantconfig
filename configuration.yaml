@@ -15,7 +15,6 @@ homeassistant:
 http:
   ssl_certificate: !secret html_ssl_certificate
   ssl_key: !secret html_ssl_key
-  base_url: !secret html_base_url
 
 duckdns:
   domain: !secret dns_domain
