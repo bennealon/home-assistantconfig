@@ -76,6 +76,15 @@ recorder:
       - sensor.time_date
       - sensor.time_utc
 
+influxdb:
+  host: !secret influxdb_host
+  port: !secret influxdb_port
+  database: !secret influxdb_database
+  username: !secret influxdb_username
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
+
 input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml
 group: !include groups.yaml

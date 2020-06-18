@@ -30,6 +30,15 @@ Air Cast
 MariaDB
     - goto configuration and set the database password
     - start the add-on
+InfluxDB
+    - start the add-on
+    - goto the influxdb admin console and user (with all permissions) that matches the credentials in secrets.yaml for homeassistant.
+    - Create another user for grafana and assigna all permissions.
+    - create a database for homeassistant.
+    - restart homeassistant
+Grafana
+    - start the add-on
+    - goto the grafana dashboard, and under configuration add a datasource for influxdb.
 
 Once the share is active, we can access the configuration directory and checkout our code.
 
