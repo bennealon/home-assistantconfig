@@ -66,6 +66,15 @@ google:
 
 recorder:
   db_url: !secret mariadb_connection_string
+  exclude:
+    entities:
+      - sensor.time      
+      - sensor.date
+      - sensor.date_time
+      - sensor.date_time_iso
+      - sensor.internet_time
+      - sensor.time_date
+      - sensor.time_utc
 
 input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml
