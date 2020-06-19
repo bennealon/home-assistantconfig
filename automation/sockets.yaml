@@ -68,3 +68,44 @@
     - service: switch.turn_off
       data:
         entity_id: switch.kettle
+
+- alias: "Georgia fairy lights on"
+  trigger:
+    platform: state
+    entity_id: switch.georgia_fairy_lights
+    from: "off"
+    to: "on"
+  action:
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.georgia_fairy_lights
+    - service: timer.start
+      data_template:
+        entity_id: timer.georgia_fairy_lights
+        duration: '01:00:00'
+
+- alias: "Georgia fairy lights off"
+  # switch goes off, cancel any timer.
+  trigger:
+    platform: state
+    entity_id: switch.georgia_fairy_lights
+    to: "off"
+  action:
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.georgia_fairy_lights
+
+- alias: "Georgia fairy lights timer finished, turning off"
+# fairy lights timer finished
+# Turn off
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.georgia_fairy_lights
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.georgia_fairy_lights
