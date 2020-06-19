@@ -1,0 +1,83 @@
+# event ids:
+  # 1002 short press on
+  # 1003 long press on
+  # 2002 short press dim up
+  # 2003 long press dim up
+  # 3002 short press dim down
+  # 3003 long press dim down
+  # 4002 short press off
+  # 4003 long press off
+
+- alias: "georgia dimmer on"
+  # Turn big light on, and fairy lights
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: georgia_dimmer_switch
+      event: 1002
+  action:
+    - service: hue.hue_activate_scene
+      data:
+        group_name: "Georgias Room"
+        scene_name: "Bright"
+    - service: switch.turn_on
+      data:
+        entity_id: switch.georgia_fairy_lights
+
+- alias: "georgia dimmer long press on random colour"
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: georgia_dimmer_switch
+      event: 1003
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.georgias_room
+        brightness_pct: 75
+        effect: random
+
+- alias: "georgia dimmer dim up"
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: georgia_dimmer_switch
+      event: 2002
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.georgias_room
+        brightness_step_pct: 10
+
+- alias: "georgia dimmer dim down"
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: georgia_dimmer_switch
+      event: 3002
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.georgias_room
+        brightness_step_pct: -10
+
+- alias: "georgia dimmer off"
+  # big light off, and fairy lights off
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: georgia_dimmer_switch
+      event: 4002
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.georgias_room
+    - service: switch.turn_off
+      data:
+        entity_id: switch.georgia_fairy_lights
+

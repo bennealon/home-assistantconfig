@@ -52,6 +52,8 @@ remote:
     host: !secret harmony_host
     activity: Freeview
 
+# we still need this integration so that we can use groups.
+# make sure to use the integration without the 'ignore' next to it in integrations, otherwise it will use auto discovery and not work.
 hue:
   bridges:
     - host: !secret hue_host
@@ -90,7 +92,8 @@ input_boolean: !include input_boolean.yaml
 group: !include groups.yaml
 person: !include people.yaml
 device_tracker: !include device_tracker.yaml
-automation: !include_dir_merge_list automation/
+automation: !include automations.yaml
+automation old: !include_dir_merge_list automation/
 script: !include_dir_merge_named scripts/
 zone: !include zones.yaml
 sensor: !include_dir_merge_list sensors/
