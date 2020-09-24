@@ -5,17 +5,17 @@
 `https://github.com/custom-cards/button-card`
 sha: d447819d36ae83259443b8629cf5a4b36c8f5399
 
-## custom-header.js v1.5.8
+## custom-header.js v1.6.7
 
 `https://github.com/maykar/custom-header`
-sha: 5a6d4a92a1b1939d73e6ed14359fae79c977c9b3
+sha: ccf0c09763dee5f00b91037702d6e378723ffcff
 
 https://maykar.github.io/custom-header/#intro/intro
 
-## simple-thermostat.js v0.35.0
+## simple-thermostat.js v0.36.0
 
 `https://github.com/nervetattoo/simple-thermostat`
-9f3474ec052ab7f994993504be84bdae309f84f4
+sha: 16d565398e6e0ee19924bac87b32f3388ea18417
 
 ## simple-weather-card.js v0.8.0
 
@@ -24,5 +24,5 @@ sha: 422e8655e78a1a7da0ab4e510f0657bec4af3ea5
 
 ## Atomic Calendar v0.8.9
 
-sha: bdabebd82822467424b5291a980ae88be4f6fcf0
+sha: 9e828580fd52aef456eb1707a01be93ac4e2a5f0
 `https://github.com/atomic7777/atomic_calendar`
