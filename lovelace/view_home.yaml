@@ -33,8 +33,6 @@ cards:
         entity: water_heater.dhw_controller
         icon: mdi:thermometer-plus
         color_type: icon
-        confirmation: 
-          text: Hot Water Boosted for 1 Hour
         name: >
           [[[
             var temperature = states['water_heater.dhw_controller'].attributes.current_temperature;
@@ -44,22 +42,7 @@ cards:
           - value: "on"
             color: red
         tap_action:
-          action: call-service
-          service: script.hot_water_boost
-          service_data:
-            duration_hour: 1
-        hold_action:
           action: more-info
-      - type: entity-button
-        entity: climate.rosies_room
-        name: Rosie Nap
-        icon: mdi:sleep
-        tap_action:
-          action: call-service
-          service: script.rosies_room_temperature
-          service_data:
-            temperature: 18
-            duration_hour: 2
   - type: "custom:atomic-calendar"
     title: Calendar
     showColors: true

@@ -1,8 +1,8 @@
-hot_water_boost:
-  # data:
-  #   duration_hour: 1
-  sequence:
-    - service: ifttt.trigger
-      data_template:
-        event: "hot_water_on"
-        value1: "{{ duration_hour }}"
+# hot_water_boost:
+#   # data:
+#   #   duration_hour: 1
+#   sequence:
+#     - service: ifttt.trigger
+#       data_template:
+#         event: "hot_water_on"
+#         value1: "{{ duration_hour }}"
