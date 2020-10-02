@@ -37,7 +37,9 @@ asuswrt:
   # Should probably make this use SSH instead.
   host: !secret asuswrt_host
   username: !secret asuswrt_username
-  password: !secret asuswrt_password
+  protocol: ssh
+  port: !secret asuswrt_ssh_port
+  ssh_key: !secret asuswrt_ssh_key_path
 
 mobile_app:
 
@@ -91,7 +93,6 @@ input_datetime: !include input_datetime.yaml
 input_boolean: !include input_boolean.yaml
 group: !include groups.yaml
 person: !include people.yaml
-device_tracker: !include device_tracker.yaml
 automation: !include automations.yaml
 automation old: !include_dir_merge_list automation/
 script: !include_dir_merge_named scripts/
