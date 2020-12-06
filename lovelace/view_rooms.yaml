@@ -21,8 +21,8 @@ cards:
           - sensor.living_room_sensor_light_level
           - binary_sensor.living_room_sensor_motion
           - remote.living_room
-          # - entity: switch.living_room_smart_plug
-          #   icon: mdi:power-socket-uk
+          - entity: switch.living_room_christmas_tree
+            icon: mdi:string-lights
           - light.living_room
         entity: light.living_room
         state_image:

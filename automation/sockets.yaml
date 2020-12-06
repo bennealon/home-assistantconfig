@@ -70,6 +70,7 @@
         entity_id: switch.kettle
 
 - alias: "Georgia fairy lights on"
+  initial_state: false
   trigger:
     platform: state
     entity_id: switch.georgia_fairy_lights
@@ -87,6 +88,7 @@
 
 - alias: "Georgia fairy lights off"
   # switch goes off, cancel any timer.
+  initial_state: false
   trigger:
     platform: state
     entity_id: switch.georgia_fairy_lights
@@ -100,6 +102,7 @@
 - alias: "Georgia fairy lights timer finished, turning off"
 # fairy lights timer finished
 # Turn off
+  initial_state: false
   trigger:
     platform: event
     event_type: timer.finished

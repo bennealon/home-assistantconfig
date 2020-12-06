@@ -1,7 +1,7 @@
 - alias: "Outside Christmas lights on at sunset"
   # At 30 mins before sunset
   # turn christmas lights on.
-  initial_state: false
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
@@ -15,7 +15,7 @@
   # At 30 mins before sunset
   # If someone is home.
   # turn christas lights on.
-  initial_state: false
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
@@ -31,7 +31,7 @@
 
 - alias: "All christmas lights off at specified time"
   # turn christas lights off at specified time.
-  initial_state: false
+  initial_state: true
   trigger:
     platform: template
     value_template: "{{ states('sensor.time') == (state_attr('input_datetime.christmas_light_off_time', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
@@ -45,7 +45,7 @@
         entity_id: group.switches_christmas_tree_lights
 
 - alias: "Last person leaves home, turn the Christmas tree lights off"
-  initial_state: false
+  initial_state: true
   trigger:
     platform: state
     entity_id: group.household
@@ -57,7 +57,7 @@
         entity_id: group.switches_christmas_tree_lights
 
 - alias: "First person arrives home after sunset, turn the Christmas tree lights on"
-  initial_state: false
+  initial_state: true
   trigger:
     platform: state
     entity_id: group.household
