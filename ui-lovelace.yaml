@@ -10,3 +10,4 @@ views:
   - !include /config/lovelace/view_rooms.yaml
   - !include /config/lovelace/view_heating.yaml
   - !include /config/lovelace/view_remote_control.yaml
+  
