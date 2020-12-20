@@ -3,14 +3,16 @@
   user_id: !secret userid_bnealon
   device_trackers:
     - device_tracker.bens_iphone
-    - device_tracker.bens_iphone_router
+    - device_tracker.bens_iphone_router_2g
+    - device_tracker.bens_iphone_router_5g
 
 - name: Cathy
   id: cathynealon
   user_id: !secret userid_cnealon
   device_trackers:
     - device_tracker.cathys_iphone
-    - device_tracker.cathys_iphone_router
+    - device_tracker.cathys_iphone_router_2g
+    - device_tracker.cathys_iphone_router_5g
 
 - name: Guest
   id: guest

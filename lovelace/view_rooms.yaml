@@ -4,8 +4,8 @@ cards:
   - entities:
       - sensor.hallway_sensor_light_level
       - binary_sensor.hallway_sensor_motion
-      # - entity: switch.hallway_smart_plug
-      #   icon: mdi:power-socket-uk
+      - entity: switch.hallway_christmas_tree
+        icon: mdi:string-lights
       - light.hallway_lamp
     entity: light.hallway_lamp
     state_image:
@@ -88,8 +88,8 @@ cards:
           entity: media_player.kitchen
 
   - entities:
-      # - entity: switch.garage_smart_plug
-      #   icon: mdi:power-socket-uk
+      - entity: switch.outside_christmas_lights
+        icon: mdi:string-lights
       - entity: switch.tumble_dryer
         icon: mdi:power-socket-uk
     entity: switch.tumble_dryer
