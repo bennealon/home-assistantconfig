@@ -8,7 +8,6 @@ household:
 switches_geofencing:
   name: Switches Geofencing
   entities:
-    - switch.kettle
     - switch.tumble_dryer
 
 switches_christmas_tree_lights:

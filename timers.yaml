@@ -6,5 +6,7 @@ kitchen_light:
   duration: '00:15:00'
 tumble_dryer:
   duration: '01:00:00'
+washing_machine:
+  duration: '01:00:00'
 georgia_fairy_lights:
   duration: '01:00:00'
