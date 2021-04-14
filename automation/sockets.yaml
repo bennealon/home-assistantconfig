@@ -56,7 +56,7 @@
     platform: numeric_state
     entity_id: switch.washing_machine
     value_template: "{{ state_attr('switch.washing_machine', 'current_a') }}"
-    below: 0.06
+    below: 0.08
     for: "00:01:00"
   condition:
     condition: state
@@ -81,7 +81,7 @@
     platform: numeric_state
     entity_id: switch.washing_machine
     value_template: "{{ state_attr('switch.washing_machine', 'current_a') }}"
-    above: 0.06
+    above: 0.08
   condition:
     condition: state
     entity_id: switch.washing_machine
