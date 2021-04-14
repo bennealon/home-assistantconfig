@@ -41,7 +41,6 @@ evohome:
   scan_interval: 180
 
 asuswrt:
-  # Should probably make this use SSH instead.
   host: !secret asuswrt_host
   username: !secret asuswrt_username
   protocol: ssh
