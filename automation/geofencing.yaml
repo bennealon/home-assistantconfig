@@ -2,11 +2,7 @@
   trigger:
     - platform: zone
       entity_id: person.cathy_nealon
-      zone: zone.north_tees_nhs
-      event: leave
-    - platform: zone
-      entity_id: person.cathy_nealon
-      zone: zone.redcar_nhs
+      zone: zone.south_tees_nhs
       event: leave
   action:
     service: script.notify_person
