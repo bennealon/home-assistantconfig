@@ -19,7 +19,7 @@
 - name: South Tees NHS
   latitude: !secret zone_southtees_nhs_lat
   longitude: !secret zone_southtees_nhs_long
-  radius: 250
+  radius: 350
   icon: mdi:hospital-building
 
 - name: Redcar NHS
