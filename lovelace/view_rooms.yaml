@@ -4,8 +4,8 @@ cards:
   - entities:
       - sensor.hallway_sensor_light_level
       - binary_sensor.hallway_sensor_motion
-      # - entity: switch.hallway_christmas_tree
-      #   icon: mdi:string-lights
+      - entity: switch.hallway_christmas_tree
+        icon: mdi:string-lights
       - light.hallway_lamp
     entity: light.hallway_lamp
     state_image:
@@ -21,8 +21,8 @@ cards:
           - sensor.living_room_sensor_light_level
           - binary_sensor.living_room_sensor_motion
           - remote.living_room
-          # - entity: switch.living_room_christmas_tree
-          #   icon: mdi:string-lights
+          - entity: switch.living_room_christmas_tree
+            icon: mdi:string-lights
           - light.living_room
         entity: light.living_room
         state_image:
@@ -88,8 +88,8 @@ cards:
           entity: media_player.kitchen
 
   - entities:
-      # - entity: switch.outside_christmas_lights
-      #   icon: mdi:string-lights
+      - entity: switch.outside_christmas_lights
+        icon: mdi:string-lights
       - entity: switch.tumble_dryer
         icon: mdi:tumble-dryer
     entity: switch.tumble_dryer
