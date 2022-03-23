@@ -14,19 +14,6 @@ cards:
       - entity: input_boolean.livingroom_motion_enabled
   - type: weather-forecast
     entity: weather.home
-  # - type: conditional
-  #   conditions:
-  #     - entity: sensor.occasion
-  #       state: "work_morning"
-  #   card:
-  #     type: entities
-  #     show_header_toggle: false
-  #     title: Commute times
-  #     entities:
-  #       - entity: sensor.home_to_amplience
-  #         name: Amplience
-  #       - entity: sensor.home_to_north_tees_nhs
-  #         name: North Tees
   - type: horizontal-stack
     cards:
       - type: "custom:button-card"

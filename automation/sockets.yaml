@@ -1,8 +1,7 @@
 - alias: "Tumble dryer finished, notifying and starting timer"
   trigger:
     platform: numeric_state
-    entity_id: switch.tumble_dryer
-    value_template: "{{ state_attr('switch.tumble_dryer', 'current_a') }}"
+    entity_id: sensor.tumble_dryer_current
     below: 0.5
     for: "00:01:00"
   condition:
@@ -26,8 +25,7 @@
 - alias: "Tumble dryer started"
   trigger:
     platform: numeric_state
-    entity_id: switch.tumble_dryer
-    value_template: "{{ state_attr('switch.tumble_dryer', 'current_a') }}"
+    entity_id: sensor.tumble_dryer_current
     above: 0.5
   condition:
     condition: state
@@ -54,8 +52,7 @@
 - alias: "Washing machine finished notification, start nag timer"
   trigger:
     platform: numeric_state
-    entity_id: switch.washing_machine
-    value_template: "{{ state_attr('switch.washing_machine', 'current_a') }}"
+    entity_id: sensor.washing_machine_current
     below: 0.055
     for: "00:01:00"
   condition:
@@ -79,8 +76,7 @@
 - alias: "Washing machine started"
   trigger:
     platform: numeric_state
-    entity_id: switch.washing_machine
-    value_template: "{{ state_attr('switch.washing_machine', 'current_a') }}"
+    entity_id: sensor.washing_machine_current
     above: 0.055
   condition:
     condition: state
@@ -109,8 +105,7 @@
   initial_state: false
   trigger:
     platform: numeric_state
-    entity_id: switch.kettle
-    value_template: "{{ state_attr('switch.kettle', 'current_a') }}"
+    entity_id: sensor.kettle_current
     below: 0.5
     for: "00:00:10"
   condition:

@@ -1,8 +1,6 @@
 background: var(--background-image)
 badges: []
 cards:
-  - type: weather-forecast
-    entity: weather.home
   - type: entities
     show_header_toggle: false
     title: "Temperature Sensors"

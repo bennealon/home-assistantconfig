@@ -37,13 +37,6 @@ evohome:
   password: !secret evohome_password
   scan_interval: 180
 
-asuswrt:
-  host: !secret asuswrt_host
-  username: !secret asuswrt_username
-  protocol: ssh
-  port: !secret asuswrt_ssh_port
-  ssh_key: !secret asuswrt_ssh_key_path
-
 mobile_app:
 
 discovery:
@@ -86,7 +79,7 @@ input_boolean: !include input_boolean.yaml
 group: !include groups.yaml
 person: !include people.yaml
 automation: !include automations.yaml
-automation old: !include_dir_merge_list automation/
+automation manual: !include_dir_merge_list automation/
 script: !include_dir_merge_named scripts/
 zone: !include zones.yaml
 sensor: !include_dir_merge_list sensors/
