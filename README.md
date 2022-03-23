@@ -75,5 +75,3 @@ once the configuration is all loaded, go into configuration -> persons, and remo
 
 # TODO
 add bedroom wakeup light.
-google tts when tumble finished.
-google home integration

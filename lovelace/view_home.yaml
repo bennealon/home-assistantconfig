@@ -43,16 +43,4 @@ cards:
             color: red
         tap_action:
           action: more-info
-  - type: "custom:atomic-calendar"
-    title: Calendar
-    showColors: true
-    entities:
-      - entity: calendar.family_calendar
-        titleColor: green
-      - entity: calendar.nursery
-        titleColor: blue
-      - entity: calendar.cathy_work
-        titleColor: orange
-      - entity: calendar.meals
-        titleColor: purple
   

@@ -10,26 +10,8 @@
   radius: 100
   icon: mdi:worker
 
-- name: North Tees NHS
-  latitude: !secret zone_northtees_nhs_lat
-  longitude: !secret zone_northtees_nhs_long
-  radius: 250
-  icon: mdi:hospital-building
-
 - name: South Tees NHS
   latitude: !secret zone_southtees_nhs_lat
   longitude: !secret zone_southtees_nhs_long
   radius: 350
-  icon: mdi:hospital-building
-
-- name: Redcar NHS
-  latitude: !secret zone_redcar_nhs_lat
-  longitude: !secret zone_redcar_nhs_long
-  radius: 150
-  icon: mdi:hospital-building
-
-- name: Linthorpe Surgery NHS
-  latitude: !secret zone_linthorpesurgery_nhs_lat
-  longitude: !secret zone_linthorpesurgery_nhs_long
-  radius: 50
   icon: mdi:hospital-building
