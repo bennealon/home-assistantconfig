@@ -27,10 +27,9 @@
       data:
         entity_id: timer.kitchen_light
         duration: '00:05:00'
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Kitchen"
-        scene_name: "Welcome home"
+        entity_id: "scene.kitchen_welcome_home"
 
 - alias: "Kitchen light timer finished"
 # kitchen lights finished

@@ -28,10 +28,9 @@
       data:
         entity_id: timer.hallway_light
         duration: "00:01:00"
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Hallway"
-        scene_name: "Ambient daytime"
+        entity_id: "scene.hallway_ambient_daytime"
 
 - alias: "hallway motion evening"
   # Detects motion when
@@ -67,10 +66,9 @@
       data_template:
         entity_id: timer.hallway_light
         duration: "00:05:00"
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Hallway"
-        scene_name: "Ambient evening"
+        entity_id: "scene.hallway_ambient_evening"
 
 - alias: "Hallway motion timer finished dimmed"
   # Light timer finished
@@ -102,10 +100,9 @@
           - condition: template
             value_template: "{{ ( state_attr('input_datetime.hallway_light_off_time', 'hour') | int < 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.hallway_light_off_time', 'timestamp') | int ) }}"
   action:
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Hallway"
-        scene_name: "Ambient evening dimmed"
+        entity_id: "scene.hallway_ambient_evening_dimmed"
 
 - alias: "Hallway motion timer finished off"
   # Light timer finished
@@ -163,10 +160,9 @@
       entity_id: light.hallway
       state: "off"
   action:
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Hallway"
-        scene_name: "Ambient evening dimmed"
+        entity_id: "scene.hallway_ambient_evening_dimmed"
 
 - alias: "hallway light off time"
   # At time specified

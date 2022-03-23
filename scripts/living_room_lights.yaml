@@ -7,7 +7,6 @@ living_room_light_override:
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.livingroom_motion_enabled
-    - service: hue.hue_activate_scene
-      data_template:
-        group_name: "Living room"
-        scene_name: "{{ scene_name }}"
+    - service: hue.activate_scene
+      data:
+        entity_id: "scene.living_room_{{ scene_name }}"

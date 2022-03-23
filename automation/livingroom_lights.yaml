@@ -31,10 +31,9 @@
       data:
         entity_id: timer.living_room_light
         duration: "00:10:00"
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Living room"
-        scene_name: "Ambient wall"
+        entity_id: "scene.living_room_ambient_wall"
 
 - alias: "Living room motion evening"
   # Detects motion when
@@ -78,10 +77,9 @@
           {% else %}
             00:15:00
           {% endif %}
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Living room"
-        scene_name: "Ambient lamps"
+        entity_id: "scene.living_room_ambient_lamps"
 
 - alias: "Living room motion timer finished dimmed"
   # Light timer finished
@@ -113,10 +111,9 @@
           - condition: template
             value_template: "{{ ( state_attr('input_datetime.livingroom_light_off_time', 'hour') | int < 12 ) and ( (now().hour*60*60 + now().minute*60 + now().second) < state_attr('input_datetime.livingroom_light_off_time', 'timestamp') | int ) }}"
   action:
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Living room"
-        scene_name: "Ambient lamps dimmed"
+        entity_id: "scene.living_room_ambient_lamps_dimmed"
 
 - alias: "Living room motion timer finished off"
   # Light timer finished
@@ -177,10 +174,9 @@
       entity_id: timer.living_room_light
       state: "idle"
   action:
-    - service: hue.hue_activate_scene
+    - service: hue.activate_scene
       data:
-        group_name: "Living room"
-        scene_name: "Ambient lamps dimmed"
+        entity_id: "scene.living_room_ambient_lamps_dimmed"
 
 - alias: "living room light off time"
   # At time specified

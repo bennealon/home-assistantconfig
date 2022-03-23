@@ -43,7 +43,7 @@ cards:
               action: call-service
               service: script.living_room_light_override
               service_data:
-                scene_name: "Ambient all"
+                scene_name: "ambient_all"
           - entity: light.living_room
             type: entity-button
             name: "Ambient lamps"
@@ -53,7 +53,7 @@ cards:
               action: call-service
               service: script.living_room_light_override
               service_data:
-                scene_name: "Ambient lamps"
+                scene_name: "ambient_lamps"
           - entity: light.living_room
             type: entity-button
             name: "Ambient wall"
@@ -63,7 +63,7 @@ cards:
               action: call-service
               service: script.living_room_light_override
               service_data:
-                scene_name: "Ambient wall"
+                scene_name: "ambient_wall"
   - type: vertical-stack
     cards:
       - entities:
