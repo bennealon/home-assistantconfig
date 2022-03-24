@@ -5,7 +5,7 @@ badges:
   - person.guest
 path: home
 title: Home
-icon: mdi:home-assistant
+icon: mdi:home
 cards:  
   - type: entities
     show_header_toggle: false
@@ -30,4 +30,117 @@ cards:
             color: red
         tap_action:
           action: more-info
+  - entities:
+      - sensor.hallway_sensor_light_level
+      - binary_sensor.hallway_sensor_motion
+      - entity: switch.hallway_christmas_tree
+        icon: mdi:string-lights
+      - light.hallway_lamp
+    entity: light.hallway_lamp
+    state_image:
+      "on": /local/images/rooms/hallway_on.jpg
+      "off": /local/images/rooms/hallway_off.jpg
+    title: Hallway
+    type: picture-glance
+    tap_action:
+      action: toggle
+  - type: vertical-stack
+    cards:
+      - entities:
+          - sensor.living_room_sensor_light_level
+          - binary_sensor.living_room_sensor_motion
+          - remote.living_room
+          - entity: switch.living_room_christmas_tree
+            icon: mdi:string-lights
+          - light.living_room
+        entity: light.living_room
+        state_image:
+          "on": /local/images/rooms/livingroom_on.jpg
+          "off": /local/images/rooms/livingroom_off.jpg
+        title: Living Room
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - type: horizontal-stack
+        cards:
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient all"
+            icon: mdi:lightbulb-on
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.living_room_light_override
+              service_data:
+                scene_name: "ambient_all"
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient lamps"
+            icon: mdi:lamp
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.living_room_light_override
+              service_data:
+                scene_name: "ambient_lamps"
+          - entity: light.living_room
+            type: entity-button
+            name: "Ambient wall"
+            icon: mdi:wall-sconce-flat
+            show_name: false
+            tap_action:
+              action: call-service
+              service: script.living_room_light_override
+              service_data:
+                scene_name: "ambient_wall"
+  - type: vertical-stack
+    cards:
+      - entities:
+          - entity: switch.washing_machine
+            icon: mdi:washing-machine
+          - light.kitchen
+          - media_player.kitchen
+        entity: light.kitchen
+        state_image:
+          "on": /local/images/rooms/kitchen_on.jpg
+          "off": /local/images/rooms/kitchen_off.jpg
+        title: Kitchen
+        type: picture-glance
+        tap_action:
+          action: toggle
+      - type: conditional
+        conditions:
+          - entity: media_player.kitchen
+            state_not: "paused"
+        card:
+          type: media-control
+          entity: media_player.kitchen
+
+  - entities:
+      - entity: switch.outside_christmas_lights
+        icon: mdi:string-lights
+      - entity: switch.tumble_dryer
+        icon: mdi:tumble-dryer
+    entity: switch.tumble_dryer
+    state_image:
+      "on": /local/images/rooms/garage_on.jpg
+      "off": /local/images/rooms/garage_off.jpg
+    title: Garage
+    type: picture-glance
+    tap_action:
+      action: toggle
+  - type: entity-button
+    entity: light.bedroom
+    hold_action:
+      action: more-info
+  - entities:
+      - entity: light.games_room
+    entity: light.games_room
+    state_image:
+      "on": /local/images/rooms/games_room_on.jpg?v=1
+      "off": /local/images/rooms/games_room_off.jpg?v=1
+    title: Games Room
+    type: picture-glance
+    tap_action:
+      action: toggle
   
