@@ -70,23 +70,33 @@
     - service: remote.turn_off
       data:
         entity_id: remote.living_room
-      # Heating into away mode.
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.home
-        preset_mode: away
       # all lights off, excluding hallway.
     - service: light.turn_off
       data:
         entity_id: light.all_excluding
       # notify IFTTT
-    - service: ifttt.trigger
-      data:
-        event: "heatmiser_away"
-      # reset the livingroom motion sensor enabled flag: so that the lights turn off on their own.
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.livingroom_motion_enabled
+
+- alias: "Last person leaves home Heating"
+  trigger:
+    platform: state
+    entity_id: group.household
+    from: "home"
+  condition:
+    - condition: state
+      entity_id: input_boolean.heating_off_override
+      state: "off"
+  action:
+      # Heating into away mode.
+    - service: evohome.set_system_mode
+      data:
+        mode: Away
+      # notify IFTTT
+    - service: ifttt.trigger
+      data:
+        event: "heatmiser_away"
 
 - alias: "First person arrived home"
   trigger:
@@ -100,11 +110,19 @@
         device: "bens_iphone"
         title: "Home"
         message: "First person arrived"
+
+- alias: "First person arrived home Heating"
+  trigger:
+    platform: state
+    entity_id: group.household
+    to: "home"
+  condition:
+    - condition: state
+      entity_id: input_boolean.heating_off_override
+      state: "off"
+  action:
     # reset heating out of away mode
-    - service: climate.set_preset_mode
-      data:
-        entity_id: climate.home
-        preset_mode: Reset
+    - service: evohome.reset_system
     # notify IFTTT
     - service: ifttt.trigger
       data:

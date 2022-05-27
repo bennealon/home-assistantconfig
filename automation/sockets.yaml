@@ -53,7 +53,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.washing_machine_current
-    below: 0.055
+    below: 0.050
     for: "00:01:00"
   condition:
     condition: state
@@ -77,7 +77,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.washing_machine_current
-    above: 0.055
+    above: 0.059
   condition:
     condition: state
     entity_id: switch.washing_machine

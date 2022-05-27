@@ -3,6 +3,11 @@ livingroom_motion_enabled:
   initial: true
   icon: mdi:motion-sensor
 
+heating_off_override:
+  name: Heating off override
+  initial: false
+  icon: mdi:radiator-off
+
 guest_mode_enabled:
   name: Guest at home
   initial: true

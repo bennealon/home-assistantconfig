@@ -13,3 +13,23 @@
     data:
       title: "Hot Water"
       message: "Temperature too low: {{ state_attr('water_heater.dhw_controller', 'current_temperature') }} degrees"
+
+- alias: "Heating Off override enabled"
+  # Turn the heating system off
+  trigger:
+    platform: state
+    entity_id: input_boolean.heating_off_override
+    to: "on"
+  action:
+    - service: evohome.set_system_mode
+      data:
+        mode: HeatingOff
+
+- alias: "Heating Off override disabled"
+  # Reset the heating system back to schedule
+  trigger:
+    platform: state
+    entity_id: input_boolean.heating_off_override
+    to: "off"
+  action:
+    - service: evohome.reset_system
