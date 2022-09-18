@@ -13,6 +13,7 @@ lovelace:
       type: module
     - url: /local/custom-cards/simple-thermostat.js?v=0.36.0
       type: module
+
 homeassistant:
   customize: !include customize.yaml
 
