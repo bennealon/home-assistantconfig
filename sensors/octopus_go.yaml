@@ -16,7 +16,7 @@
     - "results"
 
 - platform: rest
-  name: Electricity Consumption Yesterday
+  name: Electricity Yesterday
   resource: !secret octopus_electricity_api
   headers:
     Authorization: !secret octopus_auth
@@ -25,35 +25,16 @@
     period_to: "{{ (now() - timedelta(days = 1) + timedelta(minutes = 15)).isoformat() }}"
   value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
   scan_interval: 1800
-  unit_of_measurement: 'kWh'
-  device_class: energy
-  state_class: total
-  json_attributes:
-    - "results"
-
-- platform: rest
-  name: Electricity Consumption Yesterday Total
-  resource: !secret octopus_electricity_api
-  headers:
-    Authorization: !secret octopus_auth
-  params:
-    period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
-    period_to: "{{ (now() - timedelta(days = 1)).isoformat() }}"
-  value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
-  scan_interval: 1800
-  unit_of_measurement: 'kWh'
-  device_class: energy
-  state_class: total_increasing
   json_attributes:
     - "results"
 
 - platform: template
   sensors:
-    electricity_consumption_yesterday_cost:
-      friendly_name: Electricity Consumption Yesterday Cost
+    electricity_yesterday_cost:
+      friendly_name: Electricity Yesterday Cost
       icon_template: mdi:cash-multiple
       value_template: >-
-        {% set results = state_attr('sensor.electricity_consumption_yesterday', 'results') %}
+        {% set results = state_attr('sensor.electricity_yesterday', 'results') %}
         {% if results is defined %}
           {% set ns = namespace(total=0) %}
           {% for res in results %}
@@ -68,17 +49,28 @@
         {% else %}
           Unknown
         {% endif %}
-      unit_of_measurement: GBP
-      device_class: monetary
+
+- platform: rest
+  name: Electricity Yesterday Total
+  resource: !secret octopus_electricity_api
+  headers:
+    Authorization: !secret octopus_auth
+  params:
+    period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
+    period_to: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T23:59:59' }}"
+  value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
+  scan_interval: 1800
+  json_attributes:
+    - "results"
 
 - platform: template
   sensors:
-    electricity_consumption_yesterday_total_cost:
-      friendly_name: Electricity Consumption Yesterday Total Cost
+    electricity_yesterday_total_cost:
+      friendly_name: Electricity Yesterday Total Cost
       icon_template: mdi:cash-multiple
       value_template: >-
         {% set standing_charge_pence = 48.65 %}
-        {% set results = state_attr('sensor.electricity_consumption_yesterday_total', 'results') %}
+        {% set results = state_attr('sensor.electricity_yesterday_total', 'results') %}
         {% if results is defined %}
           {% set ns = namespace(total=0) %}
           {% for res in results %}
@@ -93,8 +85,6 @@
         {% else %}
           Unknown
         {% endif %}
-      unit_of_measurement: GBP
-      device_class: monetary
 
 - platform: template
   sensors:
