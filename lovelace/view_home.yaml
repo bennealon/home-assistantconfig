@@ -12,26 +12,35 @@ cards:
     entities:
       - entity: input_boolean.guest_mode_enabled
       - entity: input_boolean.livingroom_motion_enabled
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - entity: input_boolean.heating_off_override
+      - entity: sensor.living_room_sensor_temperature
+        name: Living room
+      - entity: sensor.hallway_sensor_temperature
+        name: Hallway
+      - entity: water_heater.dhw_controller
+        name: Hot water
   - type: vertical-stack
     cards:      
-      - type: entities
-        show_header_toggle: false
-        entities:
-          - entity: input_boolean.heating_off_override
-      - type: "custom:button-card"
-        entity: water_heater.dhw_controller
-        icon: mdi:thermometer-plus
-        color_type: icon
-        name: >
-          [[[
-            var temperature = states['water_heater.dhw_controller'].attributes.current_temperature;
-            return 'Hot Water : ' + (temperature ? temperature : '0') + '℃';   
-          ]]]
-        state:
-          - value: "on"
-            color: red
-        tap_action:
-          action: more-info
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            name: Yesterday
+            entity: sensor.electricity_consumption_yesterday      
+          - type: sensor
+            name: Yesterday Cost
+            entity: sensor.electricity_consumption_yesterday_cost      
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            name: Total Yesterday
+            entity: sensor.electricity_consumption_yesterday_total
+            graph: line
+          - type: sensor
+            name: Total Yesterday Cost
+            entity: sensor.electricity_consumption_yesterday_total_cost
   - type: picture-glance
     entities:
       - sensor.hallway_sensor_light_level

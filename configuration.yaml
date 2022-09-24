@@ -1,18 +1,14 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+# logger:
+#   default: debug
+
 frontend:
   themes: !include themes.yaml
 
 lovelace:
   mode: yaml
-  resources:
-    - url: /local/custom-cards/button-card.js?v=3.3.6
-      type: module
-    - url: /local/custom-cards/custom-header.js?v=1.6.7
-      type: module
-    - url: /local/custom-cards/simple-thermostat.js?v=0.36.0
-      type: module
 
 homeassistant:
   customize: !include customize.yaml

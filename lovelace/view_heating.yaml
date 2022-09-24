@@ -1,96 +1,22 @@
 background: var(--background-image)
 badges: []
 cards:
-  - type: entities
-    show_header_toggle: false
-    title: "Temperature Sensors"
-    entities:
-      - entity: sensor.living_room_sensor_temperature
-        name: Living room
-      - entity: sensor.hallway_sensor_temperature
-        name: Hallway
-      - entity: water_heater.dhw_controller
-        name: Hot water
   - type: thermostat
     entity: climate.home
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.lounge_diner
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.master_bedroom
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.georgias_room
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.rosies_room
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.games_room
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.front_bedroom
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-  - type: "custom:simple-thermostat"
+  - type: thermostat
     entity: climate.hallway
-    step_size: 0.5
-    modes:
-      # 'hvac_mode'
-      "off":
-        name: "Off"
-        include: true
-      heat:
-        name: "On"
-        include: true
-
 path: heating
 title: Heating
 icon: mdi:home-thermometer
