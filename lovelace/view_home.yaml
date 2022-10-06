@@ -27,21 +27,21 @@ cards:
       - type: horizontal-stack
         cards:
           - type: sensor
-            name: Usage
-            entity: sensor.electricity_yesterday      
+            name: Gas Use
+            entity: sensor.gas_total      
             graph: line
           - type: sensor
-            name: Cost
-            entity: sensor.electricity_yesterday_cost      
+            name: Gas Cost
+            entity: sensor.gas_total_cost
       - type: horizontal-stack
         cards:
           - type: sensor
-            name: Usage Yesterday
-            entity: sensor.electricity_yesterday_total
+            name: Electric Use
+            entity: sensor.electricity_total
             graph: line
           - type: sensor
-            name: Cost Yesterday
-            entity: sensor.electricity_yesterday_total_cost
+            name: Electric Cost
+            entity: sensor.electricity_total_cost
   - type: picture-glance
     entities:
       - sensor.hallway_sensor_light_level

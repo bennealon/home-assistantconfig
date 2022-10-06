@@ -1,22 +1,93 @@
 ## octopus go rest template ##
 
 - platform: rest
-  name: Gas consumption
+  name: Gas Half Hourly
   resource: !secret octopus_gas_api
   headers:
     Authorization: !secret octopus_auth
   params:
-    period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
-    period_to: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T23:59:59' }}"
-  value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
+    period_from: "{{ (now() - timedelta(days = 1) - timedelta(minutes = 15)).isoformat() }}"
+    period_to: "{{ (now() - timedelta(days = 1) + timedelta(minutes = 15)).isoformat() }}"
+  value_template: >-
+    {% set calorific_value = 39.7%}
+    {% set volume_correction_value = 1.02264 %}
+    {{ ((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6|round(3) }}
+  scan_interval: 1800
   unit_of_measurement: 'kWh'
   device_class: energy
-  state_class: total_increasing
+  state_class: total
   json_attributes:
     - "results"
 
 - platform: rest
-  name: Electricity Yesterday
+  name: Gas Daily
+  resource: !secret octopus_gas_api
+  headers:
+    Authorization: !secret octopus_auth
+  params:
+    period_from: "{{ (as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d')) + 'T00:00:00' }}"
+    period_to: "{{ (now() - timedelta(days = 1)).isoformat() }}"
+  value_template: >-
+    {% set calorific_value = 39.7%}
+    {% set volume_correction_value = 1.02264 %}
+    {{ ((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6|round(3) }}
+  scan_interval: 1800
+  unit_of_measurement: 'kWh'
+  device_class: energy
+  state_class: total
+  json_attributes:
+    - "results"
+
+- platform: rest
+  name: Electricity Daily Peak
+  resource: !secret octopus_electricity_api
+  headers:
+    Authorization: !secret octopus_auth
+  params:
+    period_from: "{{ (as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d')) + 'T00:00:00' }}"
+    period_to: "{{ (now() - timedelta(days = 1)).isoformat() }}"
+  value_template: >-
+    {% set ns = namespace(total=0) %}
+    {% for res in value_json.results %}
+      {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
+      {% if time < '00:30:00' or time >= '04:30:00' %}
+        {% set ns.total = ns.total + res.consumption %}
+      {% endif %}      
+    {% endfor %}
+    {{ (ns.total|round(3)) }}
+  scan_interval: 1800
+  unit_of_measurement: 'kWh'
+  device_class: energy
+  state_class: total
+  json_attributes:
+    - "results"
+
+- platform: rest
+  name: Electricity Daily Off Peak
+  resource: !secret octopus_electricity_api
+  headers:
+    Authorization: !secret octopus_auth
+  params:
+    period_from: "{{ (as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d')) + 'T00:00:00' }}"
+    period_to: "{{ (now() - timedelta(days = 1)).isoformat() }}"
+  value_template: >-
+    {% set ns = namespace(total=0) %}
+    {% for res in value_json.results %}
+      {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
+      {% if '00:30:00' <= time < '04:30:00' %}
+        {% set ns.total = ns.total + res.consumption %}
+      {% endif %}      
+    {% endfor %}
+    {{ (ns.total|round(3)) }}
+  scan_interval: 1800
+  unit_of_measurement: 'kWh'
+  device_class: energy
+  state_class: total
+  json_attributes:
+    - "results"
+
+- platform: rest
+  name: Electricity Half Hourly
   resource: !secret octopus_electricity_api
   headers:
     Authorization: !secret octopus_auth
@@ -25,81 +96,52 @@
     period_to: "{{ (now() - timedelta(days = 1) + timedelta(minutes = 15)).isoformat() }}"
   value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
   scan_interval: 1800
+  unit_of_measurement: 'kWh'
+  device_class: energy
+  state_class: total
   json_attributes:
     - "results"
 
-- platform: template
-  sensors:
-    electricity_yesterday_cost:
-      friendly_name: Electricity Yesterday Cost
-      icon_template: mdi:cash-multiple
-      value_template: >-
-        {% set results = state_attr('sensor.electricity_yesterday', 'results') %}
-        {% if results is defined %}
-          {% set ns = namespace(total=0) %}
-          {% for res in results %}
-            {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-            {% set unit_price_pence = 33.75 %}
-            {% if '00:30:00' <= time < '04:30:00' %}
-              {% set unit_price_pence = 7.5 %}
-            {% endif %}
-            {% set ns.total = ns.total + (res.consumption * (unit_price_pence / 100)) %}
-          {% endfor %}
-          {{ (ns.total|round(2)) }}
-        {% else %}
-          Unknown
-        {% endif %}
-
 - platform: rest
-  name: Electricity Yesterday Total
+  name: Electricity Total
   resource: !secret octopus_electricity_api
   headers:
     Authorization: !secret octopus_auth
   params:
     period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
     period_to: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T23:59:59' }}"
-  value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
+  value_template: >-
+    {% if value_json.results is defined and value_json.results|count == 48 %}
+      {{ value_json.results|sum(attribute='consumption')|round(3) }}
+    {% else %}
+      0
+    {% endif %}
   scan_interval: 1800
+  unit_of_measurement: kWh
+  device_class: energy
+  state_class: total
   json_attributes:
     - "results"
 
-- platform: template
-  sensors:
-    electricity_yesterday_total_cost:
-      friendly_name: Electricity Yesterday Total Cost
-      icon_template: mdi:cash-multiple
-      value_template: >-
-        {% set standing_charge_pence = 48.65 %}
-        {% set results = state_attr('sensor.electricity_yesterday_total', 'results') %}
-        {% if results is defined %}
-          {% set ns = namespace(total=0) %}
-          {% for res in results %}
-            {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-            {% set unit_price_pence = 33.75 %}
-            {% if '00:30:00' <= time < '04:30:00' %}
-              {% set unit_price_pence = 7.5 %}
-            {% endif %}
-            {% set ns.total = ns.total + (res.consumption * (unit_price_pence / 100)) %}
-          {% endfor %}
-          {{ (ns.total + (standing_charge_pence / 100))|round(2) }}
-        {% else %}
-          Unknown
-        {% endif %}
-
-- platform: template
-  sensors:
-    gas_cost:
-      friendly_name: Gas cost
-      icon_template: mdi:cash-multiple
-      value_template: >-
-        {% set unit_price = 7.22 %}
-        {% set standing_charge = 27.22 %}
-        {% set calorific_value = 40.1 %}
-        {% set usage = state_attr('sensor.gas_consumption', 'results') %}
-        {% if usage is defined and usage|count == 48 %}
-          {{ ((states('sensor.gas_consumption') | float * 1.02264 * calorific_value / 3.6) * unit_price / 100 + standing_charge / 100)|round(2) }}
-        {% else %}
-          Unknown
-        {% endif %}
-      device_class: monetary
-      unit_of_measurement: GBP
+- platform: rest
+  name: Gas Total
+  resource: !secret octopus_gas_api
+  headers:
+    Authorization: !secret octopus_auth
+  params:
+    period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
+    period_to: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T23:59:59' }}"
+  value_template: >-
+    {% set calorific_value = 39.7%}
+    {% set volume_correction_value = 1.02264 %}
+    {% if value_json.results is defined and value_json.results|count == 48 %}
+      {{ (((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6)|round(3) }}
+    {% else %}
+      0
+    {% endif %}
+  scan_interval: 1800
+  unit_of_measurement: kWh
+  device_class: energy
+  state_class: total
+  json_attributes:
+    - "results"

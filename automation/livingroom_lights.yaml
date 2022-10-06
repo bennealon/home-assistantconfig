@@ -15,7 +15,7 @@
       state: "on"
     - condition: numeric_state
       entity_id: sensor.living_room_sensor_light_level
-      below: 40
+      below: 30
     - condition: sun
       after: sunrise
       after_offset: "+00:30:00"
@@ -54,7 +54,7 @@
         state: "on"
       - condition: numeric_state
         entity_id: sensor.living_room_sensor_light_level
-        below: 40
+        below: 30
       - condition: or
         conditions:
           - condition: sun

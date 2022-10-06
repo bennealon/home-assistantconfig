@@ -12,7 +12,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.hallway_sensor_light_level
-      below: 40
+      below: 30
     - condition: sun
       after: sunrise
       after_offset: "+00:30:00"
@@ -48,7 +48,7 @@
     conditions:
       - condition: numeric_state
         entity_id: sensor.hallway_sensor_light_level
-        below: 40
+        below: 30
       - condition: or
         conditions:
           - condition: sun

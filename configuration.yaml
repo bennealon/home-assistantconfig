@@ -80,6 +80,7 @@ automation manual: !include_dir_merge_list automation/
 script: !include_dir_merge_named scripts/
 zone: !include zones.yaml
 sensor: !include_dir_merge_list sensors/
+template: !include_dir_merge_list templates/
 climate: !include climate.yaml
 notify: !include notify.yaml
 light: !include light.yaml
