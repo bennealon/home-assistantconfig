@@ -13,6 +13,7 @@
 # included folders
 !automation
 !sensors
+!templates
 !scripts
 !python_scripts
 !www/
