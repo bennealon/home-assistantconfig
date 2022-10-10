@@ -8,5 +8,7 @@ tumble_dryer:
   duration: '01:00:00'
 washing_machine:
   duration: '01:00:00'
+dishwasher:
+  duration: '01:00:00'
 georgia_fairy_lights:
   duration: '01:00:00'

@@ -111,6 +111,8 @@ cards:
         entities:
           - entity: switch.washing_machine
             icon: mdi:washing-machine
+          - entity: switch.dishwasher
+            icon: mdi:dishwasher
           - light.kitchen
           - media_player.kitchen
         entity: light.kitchen

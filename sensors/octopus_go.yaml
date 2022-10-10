@@ -1,24 +1,4 @@
 ## octopus go rest template ##
-
-- platform: rest
-  name: Gas Half Hourly
-  resource: !secret octopus_gas_api
-  headers:
-    Authorization: !secret octopus_auth
-  params:
-    period_from: "{{ (now() - timedelta(days = 1) - timedelta(minutes = 15)).isoformat() }}"
-    period_to: "{{ (now() - timedelta(days = 1) + timedelta(minutes = 15)).isoformat() }}"
-  value_template: >-
-    {% set calorific_value = 39.7%}
-    {% set volume_correction_value = 1.02264 %}
-    {{ ((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6|round(3) }}
-  scan_interval: 1800
-  unit_of_measurement: 'kWh'
-  device_class: energy
-  state_class: total
-  json_attributes:
-    - "results"
-
 - platform: rest
   name: Gas Daily
   resource: !secret octopus_gas_api
@@ -79,22 +59,6 @@
       {% endif %}      
     {% endfor %}
     {{ (ns.total|round(3)) }}
-  scan_interval: 1800
-  unit_of_measurement: 'kWh'
-  device_class: energy
-  state_class: total
-  json_attributes:
-    - "results"
-
-- platform: rest
-  name: Electricity Half Hourly
-  resource: !secret octopus_electricity_api
-  headers:
-    Authorization: !secret octopus_auth
-  params:
-    period_from: "{{ (now() - timedelta(days = 1) - timedelta(minutes = 15)).isoformat() }}"
-    period_to: "{{ (now() - timedelta(days = 1) + timedelta(minutes = 15)).isoformat() }}"
-  value_template: "{{ value_json.results|sum(attribute='consumption')|round(3) }}"
   scan_interval: 1800
   unit_of_measurement: 'kWh'
   device_class: energy

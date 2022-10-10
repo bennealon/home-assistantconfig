@@ -1,38 +1,4 @@
 - sensor:
-    name: Gas Half Hourly Cost
-    state: >-
-      {% set unit_price_pence = 6.88 %}
-      {% set gas_half_hourly = (states('sensor.gas_half_hourly')|float) %}
-      {% if gas_half_hourly is defined %}
-        {{ (gas_half_hourly * (unit_price_pence / 100))|round(2) }}
-      {% else %}
-        0
-      {% endif %}
-    unit_of_measurement: GBP
-    state_class: total
-
-- sensor:
-    name: Electricity Half Hourly Cost
-    state: >-
-      {% set results = state_attr('sensor.electricity_half_hourly', 'results') %}
-      {% if results is defined %}
-        {% set ns = namespace(total=0) %}
-        {% for res in results %}
-          {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-          {% set unit_price_pence = 33.75 %}
-          {% if '00:30:00' <= time < '04:30:00' %}
-            {% set unit_price_pence = 7.5 %}
-          {% endif %}
-          {% set ns.total = ns.total + (res.consumption * (unit_price_pence / 100)) %}
-        {% endfor %}
-        {{ (ns.total|round(2)) }}
-      {% else %}
-        0
-      {% endif %}
-    unit_of_measurement: GBP
-    state_class: total
-
-- sensor:
     name: Electricity Total Cost
     state: >-
       {% set standing_charge_pence = 48.65 %}

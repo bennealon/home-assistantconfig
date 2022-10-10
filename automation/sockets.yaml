@@ -101,6 +101,57 @@
         title: "Washing Machine"
         message: "Did you empty Me?"
 
+- alias: "Dishwasher finished, notifying and starting timer"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dishwasher_current
+    below: 0.5
+    for: "00:01:00"
+  condition:
+    condition: state
+    entity_id: switch.dishwasher
+    state: "on"
+  action:
+  # cancel any pre-existing.
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.dishwasher
+    - service: timer.start
+      data_template:
+        entity_id: timer.dishwasher
+        duration: '00:30:00'
+    - service: script.notify_household
+      data:
+        title: "Dishwasher"
+        message: "I'm finished!"
+
+- alias: "Dishwasher started"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.dishwasher_current
+    above: 0.5
+  condition:
+    condition: state
+    entity_id: switch.dishwasher
+    state: "on"
+  action:
+    - service: timer.cancel
+      data_template:
+        entity_id: timer.dishwasher
+
+- alias: "Dishwasher timer finished, turning off"
+# Dishwasher timer finished
+# Turn off
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.dishwasher
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.dishwasher
+
 - alias: "Kettle finished, turning off"
   initial_state: false
   trigger:
