@@ -86,8 +86,8 @@
     from: "home"
   condition:
     - condition: state
-      entity_id: input_boolean.heating_off_override
-      state: "off"
+      entity_id: input_boolean.heating_system
+      state: "on"
   action:
       # Heating into away mode.
     - service: evohome.set_system_mode
@@ -118,8 +118,8 @@
     to: "home"
   condition:
     - condition: state
-      entity_id: input_boolean.heating_off_override
-      state: "off"
+      entity_id: input_boolean.heating_system
+      state: "on"
   action:
     # reset heating out of away mode
     - service: evohome.reset_system

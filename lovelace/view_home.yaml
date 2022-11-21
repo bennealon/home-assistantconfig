@@ -12,10 +12,30 @@ cards:
     entities:
       - entity: input_boolean.guest_mode_enabled
       - entity: input_boolean.livingroom_motion_enabled
+  - type: conditional
+    conditions:
+      - entity: input_boolean.heating_system
+        state: "on"
+    card:
+      type: entities
+      entities:
+        - entity: input_boolean.heating_system
+          name: "Heating System On"
+          icon: mdi:radiator
+  - type: conditional
+    conditions:
+      - entity: input_boolean.heating_system
+        state: "off"
+    card:
+      type: entities
+      entities:
+        - entity: input_boolean.heating_system
+          name: "Heating System Off"
+          icon: mdi:radiator-off
   - type: entities
     show_header_toggle: false
     entities:
-      - entity: input_boolean.heating_off_override
+      
       - entity: sensor.living_room_sensor_temperature
         name: Living room
       - entity: sensor.hallway_sensor_temperature

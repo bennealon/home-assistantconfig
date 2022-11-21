@@ -8,5 +8,4 @@ custom_header:
 views:
   - !include /config/lovelace/view_home.yaml
   - !include /config/lovelace/view_heating.yaml
-  - !include /config/lovelace/view_remote_control.yaml
   

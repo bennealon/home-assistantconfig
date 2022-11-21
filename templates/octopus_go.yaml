@@ -23,8 +23,8 @@
 - sensor:
     name: Gas Total Cost
     state: >-
-      {% set standing_charge_pence = 25.92 %}
-      {% set unit_price_pence = 6.88 %}
+      {% set standing_charge_pence = 26.84 %}
+      {% set unit_price_pence = 10.20 %}
 
       {% set gas_total = (states('sensor.gas_total')|float) %}
       {% if gas_total is defined %}

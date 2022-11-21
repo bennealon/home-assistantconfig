@@ -105,8 +105,8 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.dishwasher_current
-    below: 0.5
-    for: "00:01:00"
+    below: 0.1
+    for: "00:05:00"
   condition:
     condition: state
     entity_id: switch.dishwasher
@@ -129,7 +129,7 @@
   trigger:
     platform: numeric_state
     entity_id: sensor.dishwasher_current
-    above: 0.5
+    above: 0.1
   condition:
     condition: state
     entity_id: switch.dishwasher
