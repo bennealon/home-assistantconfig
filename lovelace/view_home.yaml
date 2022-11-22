@@ -76,79 +76,45 @@ cards:
     title: Hallway
     tap_action:
       action: toggle
-  - type: vertical-stack
-    cards:
-      - type: picture-glance
-        entities:
-          - sensor.living_room_sensor_light_level
-          - binary_sensor.living_room_sensor_motion
-          - remote.living_room
-          - entity: switch.living_room_christmas_tree
-            icon: mdi:string-lights
-          - light.living_room
-        entity: light.living_room
-        state_image:
-          "on": /local/images/rooms/livingroom_on.jpg
-          "off": /local/images/rooms/livingroom_off.jpg
-        title: Living Room
-        tap_action:
-          action: toggle
-      - type: horizontal-stack
-        cards:
-          - type: entity-button
-            entity: light.living_room            
-            name: "Ambient all"
-            icon: mdi:lightbulb-on
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.living_room_light_override
-              service_data:
-                scene_name: "ambient_all"
-          - type: entity-button
-            entity: light.living_room            
-            name: "Ambient lamps"
-            icon: mdi:lamp
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.living_room_light_override
-              service_data:
-                scene_name: "ambient_lamps"
-          - type: entity-button
-            entity: light.living_room            
-            name: "Ambient wall"
-            icon: mdi:wall-sconce-flat
-            show_name: false
-            tap_action:
-              action: call-service
-              service: script.living_room_light_override
-              service_data:
-                scene_name: "ambient_wall"
-  - type: vertical-stack
-    cards:
-      - type: picture-glance
-        entities:
-          - entity: switch.washing_machine
-            icon: mdi:washing-machine
-          - entity: switch.dishwasher
-            icon: mdi:dishwasher
-          - light.kitchen
-          - media_player.kitchen
-        entity: light.kitchen
-        state_image:
-          "on": /local/images/rooms/kitchen_on.jpg
-          "off": /local/images/rooms/kitchen_off.jpg
-        title: Kitchen
-        tap_action:
-          action: toggle
-      - type: conditional
-        conditions:
-          - entity: media_player.kitchen
-            state_not: "paused"
-        card:
-          type: media-control
-          entity: media_player.kitchen
+
+  - type: picture-glance
+    entities:
+      - sensor.living_room_sensor_light_level
+      - binary_sensor.living_room_sensor_motion
+      - remote.living_room
+      - entity: switch.living_room_christmas_tree
+        icon: mdi:string-lights
+      - light.living_room
+    entity: light.living_room
+    state_image:
+      "on": /local/images/rooms/livingroom_on.jpg
+      "off": /local/images/rooms/livingroom_off.jpg
+    title: Living Room
+    tap_action:
+      action: toggle
+  
+  - type: picture-glance
+    entities:
+      - entity: switch.washing_machine
+        icon: mdi:washing-machine
+      - entity: switch.dishwasher
+        icon: mdi:dishwasher
+      - light.kitchen
+      - media_player.kitchen
+    entity: light.kitchen
+    state_image:
+      "on": /local/images/rooms/kitchen_on.jpg
+      "off": /local/images/rooms/kitchen_off.jpg
+    title: Kitchen
+    tap_action:
+      action: toggle
+  - type: conditional
+    conditions:
+      - entity: media_player.kitchen
+        state_not: "paused"
+    card:
+      type: media-control
+      entity: media_player.kitchen
 
   - type: picture-glance
     entities:
@@ -169,12 +135,12 @@ cards:
       action: more-info
   - type: picture-glance
     entities:
-      - entity: light.games_room
-    entity: light.games_room
+      - entity: light.office
+    entity: light.office
     state_image:
-      "on": /local/images/rooms/games_room_on.jpg?v=1
-      "off": /local/images/rooms/games_room_off.jpg?v=1
-    title: Games Room
+      "on": /local/images/rooms/office_on.jpg?v=2
+      "off": /local/images/rooms/office_off.jpg?v=2
+    title: Office
     tap_action:
       action: toggle
   

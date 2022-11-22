@@ -2,5 +2,5 @@
   name: all excluding
   entities:
     - light.bedroom
-    - light.games_room
+    - light.office
     - light.kitchen

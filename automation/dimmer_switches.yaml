@@ -1,12 +1,18 @@
-# event ids:
-  # 1002 short press on
-  # 1003 long press on
-  # 2002 short press dim up
-  # 2003 long press dim up
-  # 3002 short press dim down
-  # 3003 long press dim down
-  # 4002 short press off
-  # 4003 long press off
+# data.subtype increments: 1, 2, 3, 4 down the face
+# type: initial_press, long_release, short_release, repeat
+# event_type: hue_event
+# data:
+#   id: office_dimmer_switch_button
+#   device_id: 2412051b55d760941a5bc1036e8f576d
+#   unique_id: 7f35cb01-f769-4de6-aa65-2c52b8859160
+#   type: long_release
+#   subtype: 1
+# origin: LOCAL
+# time_fired: "2022-11-22T09:53:19.845034+00:00"
+# context:
+#   id: 01GJFC37F51WSY2ZSE2QAHY82F
+#   parent_id: null
+#   user_id: null
 
 - alias: "georgia dimmer long press off, toggle fairy lights"
   # Turn big light on, and fairy lights
@@ -14,8 +20,9 @@
     platform: event
     event_type: hue_event
     event_data:
-      id: georgia_dimmer_switch
-      event: 4003
+      id: georgia_dimmer_switch_button
+      type: long_release
+      subtype: 4
   action:
     - service: switch.toggle
       data:
@@ -26,10 +33,41 @@
     platform: event
     event_type: hue_event
     event_data:
-      id: georgia_dimmer_switch
-      event: 1003
+      id: georgia_dimmer_switch_button
+      type: long_release
+      subtype: 1
   action:
     - service: light.turn_on
-      data:
+      target:
         entity_id: light.georgias_room
-        effect: random
+      data:
+        brightness_pct: '{{ range(50, 100) | random }}'
+        hs_color: '[{{ range(0, 360) | random }}, {{ range(50, 100) | random }}]'
+
+- alias: "livingroom dimmer initial_press power, motion on"
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: livingroom_dimmer_switch_button
+      type: initial_press
+      subtype: 1
+  action:
+    service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.livingroom_motion_enabled
+
+- alias: "livingroom dimmer initial_press scenes, motion off"
+  trigger:
+    platform: event
+    event_type: hue_event
+    event_data:
+      id: livingroom_dimmer_switch_button
+      type: initial_press
+      subtype: 4
+  action:
+    service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.livingroom_motion_enabled

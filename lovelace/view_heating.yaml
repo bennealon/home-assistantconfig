@@ -12,7 +12,7 @@ cards:
   - type: thermostat
     entity: climate.rosies_room
   - type: thermostat
-    entity: climate.games_room
+    entity: climate.office
   - type: thermostat
     entity: climate.front_bedroom
   - type: thermostat
