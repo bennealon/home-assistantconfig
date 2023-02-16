@@ -1,6 +1,7 @@
+## https://community.home-assistant.io/t/templates-in-command-line-sensor-octopus-energy-api/96141/131
 ## octopus go rest template ##
 - platform: rest
-  name: Gas Daily
+  name: Gas Consumption
   resource: !secret octopus_gas_api
   headers:
     Authorization: !secret octopus_auth
@@ -12,15 +13,15 @@
     {% set volume_correction_value = 1.02264 %}
     {{ ((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6|round(3) }}
   scan_interval: 1800
-  unit_of_measurement: 'kWh'
   device_class: energy
-  state_class: total
+  unit_of_measurement: kWh
+  state_class: total_increasing
   json_attributes:
     - "results"
 
 - platform: rest
-  name: Electricity Daily Peak
-  resource: !secret octopus_electricity_api
+  name: Electric Consumption Peak
+  resource: !secret octopus_electric_api
   headers:
     Authorization: !secret octopus_auth
   params:
@@ -36,15 +37,15 @@
     {% endfor %}
     {{ (ns.total|round(3)) }}
   scan_interval: 1800
-  unit_of_measurement: 'kWh'
   device_class: energy
-  state_class: total
+  unit_of_measurement: kWh
+  state_class: total_increasing
   json_attributes:
     - "results"
 
 - platform: rest
-  name: Electricity Daily Off Peak
-  resource: !secret octopus_electricity_api
+  name: Electric Consumption Off Peak
+  resource: !secret octopus_electric_api
   headers:
     Authorization: !secret octopus_auth
   params:
@@ -60,15 +61,15 @@
     {% endfor %}
     {{ (ns.total|round(3)) }}
   scan_interval: 1800
-  unit_of_measurement: 'kWh'
   device_class: energy
-  state_class: total
+  unit_of_measurement: kWh
+  state_class: total_increasing
   json_attributes:
     - "results"
 
 - platform: rest
-  name: Electricity Total
-  resource: !secret octopus_electricity_api
+  name: Electric Total
+  resource: !secret octopus_electric_api
   headers:
     Authorization: !secret octopus_auth
   params:
@@ -81,8 +82,8 @@
       0
     {% endif %}
   scan_interval: 1800
-  unit_of_measurement: kWh
   device_class: energy
+  unit_of_measurement: kWh
   state_class: total
   json_attributes:
     - "results"
@@ -96,7 +97,7 @@
     period_from: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T00:00:00' }}"
     period_to: "{{ as_timestamp(now() - timedelta(days = 1))|timestamp_custom('%Y-%m-%d') + 'T23:59:59' }}"
   value_template: >-
-    {% set calorific_value = 39.7%}
+    {% set calorific_value = 39.4%}
     {% set volume_correction_value = 1.02264 %}
     {% if value_json.results is defined and value_json.results|count == 48 %}
       {{ (((value_json.results|sum(attribute='consumption')|float) * volume_correction_value * calorific_value) / 3.6)|round(3) }}
@@ -104,8 +105,8 @@
       0
     {% endif %}
   scan_interval: 1800
-  unit_of_measurement: kWh
   device_class: energy
+  unit_of_measurement: kWh
   state_class: total
   json_attributes:
     - "results"

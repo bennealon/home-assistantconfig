@@ -57,11 +57,11 @@ cards:
         cards:
           - type: sensor
             name: Electric Use
-            entity: sensor.electricity_total
+            entity: sensor.electric_total
             graph: line
           - type: sensor
             name: Electric Cost
-            entity: sensor.electricity_total_cost
+            entity: sensor.electric_total_cost
   - type: picture-glance
     entities:
       - sensor.hallway_sensor_light_level
