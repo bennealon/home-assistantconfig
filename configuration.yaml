@@ -31,14 +31,6 @@ discovery:
   ignore:
   enable:
 
-# we still need this integration so that we can use groups.
-# make sure to use the integration without the 'ignore' next to it in integrations, otherwise it will use auto discovery and not work.
-hue:
-  bridges:
-    - host: !secret hue_host
-      allow_unreachable: true
-      allow_hue_groups: true
-
 python_script:
 
 recorder:

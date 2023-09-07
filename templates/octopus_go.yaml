@@ -1,15 +1,15 @@
 - sensor:
   - name: Electric Total Cost
     state: >-
-      {% set standing_charge_pence = 48.65 %}
+      {% set standing_charge_pence = 55.39 %}
       {% set results = state_attr('sensor.electric_total', 'results') %}
       {% if results is defined %}
         {% set ns = namespace(total=0) %}
         {% for res in results %}
           {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-          {% set unit_price_pence = 33.75 %}
+          {% set unit_price_pence = 29.58 %}
           {% if '00:30:00' <= time < '04:30:00' %}
-            {% set unit_price_pence = 7.5 %}
+            {% set unit_price_pence = 9.5 %}
           {% endif %}
           {% set ns.total = ns.total + (res.consumption * (unit_price_pence / 100)) %}
         {% endfor %}
@@ -23,8 +23,8 @@
 - sensor:
   - name: Gas Total Cost
     state: >-
-      {% set standing_charge_pence = 26.84 %}
-      {% set unit_price_pence = 10.2 %}
+      {% set standing_charge_pence = 27.47 %}
+      {% set unit_price_pence = 7.43 %}
       {% set gas_total = (states('sensor.gas_total')|float) %}
       {% if gas_total is defined %}
         {{ ((gas_total * (unit_price_pence / 100)) + (standing_charge_pence / 100))|round(2) }}
