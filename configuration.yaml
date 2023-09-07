@@ -27,10 +27,6 @@ evohome:
 
 mobile_app:
 
-discovery:
-  ignore:
-  enable:
-
 python_script:
 
 recorder:
