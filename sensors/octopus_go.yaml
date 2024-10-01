@@ -31,7 +31,7 @@
     {% set ns = namespace(total=0) %}
     {% for res in value_json.results %}
       {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-      {% if time < '00:30:00' or time >= '04:30:00' %}
+      {% if time < '00:30:00' or time >= '05:30:00' %}
         {% set ns.total = ns.total + res.consumption %}
       {% endif %}      
     {% endfor %}
@@ -55,7 +55,7 @@
     {% set ns = namespace(total=0) %}
     {% for res in value_json.results %}
       {% set time = as_timestamp(res.interval_start)|timestamp_custom('%H:%M:%S') %}
-      {% if '00:30:00' <= time < '04:30:00' %}
+      {% if '00:30:00' <= time < '05:30:00' %}
         {% set ns.total = ns.total + res.consumption %}
       {% endif %}      
     {% endfor %}
