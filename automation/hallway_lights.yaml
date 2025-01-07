@@ -1,6 +1,6 @@
 - alias: "hallway motion daytime"
   # Detects motion when
-  # light level below 15lux
+  # light level below 30lux
   # AND
   # During the daytime
   # Set light timer 10 mins
@@ -34,7 +34,7 @@
 
 - alias: "hallway motion evening"
   # Detects motion when
-  # light level below 15lux
+  # light level below 30lux
   # AND
   # During the evening (need to use OR here for the two ends of the day)
   # Set light timer 1 mins
