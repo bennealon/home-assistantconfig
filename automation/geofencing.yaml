@@ -66,10 +66,6 @@
     - service: switch.turn_off
       data:
         entity_id: group.switches_geofencing
-      # turn off TV
-    - service: remote.turn_off
-      data:
-        entity_id: remote.living_room
       # all lights off, excluding hallway.
     - service: light.turn_off
       data:

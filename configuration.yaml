@@ -13,17 +13,9 @@ lovelace:
 homeassistant:
   customize: !include customize.yaml
 
-# Text to speech
-tts:
-  - platform: google_translate
-
-ifttt:
-  key: !secret ifttt_key
-
 evohome:
   username: !secret evohome_username
   password: !secret evohome_password
-  scan_interval: 180
 
 mobile_app:
 

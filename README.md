@@ -83,13 +83,3 @@ AsusWRT
 #   ssh_key: !secret asuswrt_ssh_key_path
 
 Philips Hue
-
-Harmony
-#    platform: harmony
-#    name: Living room
-#    host: !secret harmony_host
-#    activity: Freeview
-
-
-# TODO
-add bedroom wakeup light.
