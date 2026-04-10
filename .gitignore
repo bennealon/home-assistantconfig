@@ -1,0 +1,71 @@
+# Ignore everything by default (safe baseline)
+*
+
+# ── Whitelisted file types ──────────────────────────────────
+!*.yaml
+!*.md
+!*.sh
+!*.py
+!.gitignore
+!secrets.yaml.sample
+
+# ── Whitelisted directories ──────────────────────────────────
+# Core config structure
+!automations/
+!automations/**
+!scripts/
+!scripts/**
+!sensors/
+!sensors/**
+!templates/
+!templates/**
+
+# Dashboard / Lovelace
+!lovelace/
+!lovelace/**
+!dashboards/
+!dashboards/**
+
+# Frontend assets (your own, not HACS-managed)
+!www/
+!www/**
+
+# Blueprints you've written yourself (NOT the managed ones)
+!blueprints/
+!blueprints/automation/
+!blueprints/automation/**
+!blueprints/script/
+!blueprints/script/**
+
+# ── Always exclude — credentials & generated state ──────────
+# These override the yaml whitelist above — order matters here
+secrets.yaml
+esphome/secrets.yaml       # ESPHome has its own secrets file
+known_devices.yaml
+ip_bans.yaml
+google_calendars.yaml
+
+# ── HA-generated state & storage ─────────────────────────────
+# Regenerated on startup — no value in tracking these
+.storage/
+.cloud/
+.HA_VERSION
+
+# ── Database files ────────────────────────────────────────────
+# HA rebuilds this on start; history loss is acceptable
+*.db
+*.db-shm
+*.db-wal
+
+# ── Log files ─────────────────────────────────────────────────
+*.log
+*.log.*
+home-assistant.log
+home-assistant.log.1
+
+# ── Python / dev tooling ──────────────────────────────────────
+__pycache__/
+
+# Ignore system-generated files
+.DS_Store
+._*

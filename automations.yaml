@@ -1,0 +1,38 @@
+- id: '1775346150872'
+  alias: Office Lego ON
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.office
+    from:
+    - 'off'
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.office_lego
+    data: {}
+  mode: single
+- id: '1775346248468'
+  alias: Office Lego Off
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - light.office
+    from:
+    - 'on'
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.office_lego
+    data: {}
+  mode: single
