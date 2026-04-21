@@ -36,3 +36,84 @@
       entity_id: switch.office_lego
     data: {}
   mode: single
+- id: '1775948110088'
+  alias: Tumble Dryer On when Off Peak Energy
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.octopus_energy_electricity_21l4447649_1591048740852_off_peak
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    target:
+      entity_id: switch.tumble_dryer
+    data: {}
+  - if:
+    - condition: time
+      after: 05:30:00
+      before: '23:30:00'
+    then:
+    - action: notify.mobile_app_cathys_iphone
+      metadata: {}
+      data:
+        message: Off Peak Energy Started
+    - action: notify.mobile_app_bens_iphone
+      metadata: {}
+      data:
+        message: Off Peak Energy Started
+  mode: single
+- id: '1775948249423'
+  alias: Tumble Dryer Off when Peak Energy
+  description: ''
+  triggers:
+  - trigger: state
+    entity_id:
+    - binary_sensor.octopus_energy_electricity_21l4447649_1591048740852_off_peak
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: switch.turn_off
+    metadata: {}
+    target:
+      entity_id: switch.tumble_dryer
+    data: {}
+  mode: single
+- id: '1776761370437'
+  alias: Bin Collection Reminder
+  description: Notify at 6pm the evening before any bin collection
+  triggers:
+  - trigger: time
+    at: '18:00:00'
+  conditions:
+  - condition: template
+    value_template: "{{ state_attr('sensor.waste_collection_schedule_garden_waste',
+      'daysTo') == 1\n         or state_attr('sensor.waste_collection_schedule_recycling',
+      'daysTo') == 1\n         or state_attr('sensor.waste_collection_schedule_general_waste',
+      'daysTo') == 1 }}\n"
+  actions:
+  - action: notify.mobile_app_bens_iphone
+    metadata: {}
+    data:
+      title: "\U0001F5D1️ Bin out tonight"
+      message: "{% set bins = [] %} {% if state_attr('sensor.waste_collection_schedule_garden_waste',
+        'daysTo') == 1 %}\n  {% set bins = bins + ['\U0001F33F Garden Waste'] %}\n{%
+        endif %} {% if state_attr('sensor.waste_collection_schedule_recycling', 'daysTo')
+        == 1 %}\n  {% set bins = bins + ['♻️ Recycling'] %}\n{% endif %} {% if state_attr('sensor.waste_collection_schedule_general_waste',
+        'daysTo') == 1 %}\n  {% set bins = bins + ['\U0001F5D1️ General Waste'] %}\n{%
+        endif %} {{ bins | join(' + ') }} goes out tomorrow.\n"
+  - action: notify.mobile_app_cathys_iphone
+    metadata: {}
+    data:
+      title: "\U0001F5D1️ Bin out tonight"
+      message: "{% set bins = [] %} {% if state_attr('sensor.waste_collection_schedule_garden_waste',
+        'daysTo') == 1 %}\n  {% set bins = bins + ['\U0001F33F Garden Waste'] %}\n{%
+        endif %} {% if state_attr('sensor.waste_collection_schedule_recycling', 'daysTo')
+        == 1 %}\n  {% set bins = bins + ['♻️ Recycling'] %}\n{% endif %} {% if state_attr('sensor.waste_collection_schedule_general_waste',
+        'daysTo') == 1 %}\n  {% set bins = bins + ['\U0001F5D1️ General Waste'] %}\n{%
+        endif %} {{ bins | join(' + ') }} goes out tomorrow.\n"
+  mode: single

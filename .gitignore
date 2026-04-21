@@ -29,6 +29,7 @@
 # Frontend assets (your own, not HACS-managed)
 !www/
 !www/**
+www/community
 
 # Blueprints you've written yourself (NOT the managed ones)
 !blueprints/
